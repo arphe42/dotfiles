@@ -12,6 +12,7 @@
       pfetch
       git
       gh
+      lazygit
 
       xscreensaver
       numlockx
