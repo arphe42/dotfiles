@@ -12,6 +12,8 @@
       pcmanfm
       keepassxc
       discord
+      protonup-ng
+      heroic
       lutris
       prismlauncher          # minecraft launcher
       spotify
