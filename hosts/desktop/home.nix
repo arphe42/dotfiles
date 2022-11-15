@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/desktop/awesome/home.nix
+    ../../modules/programs/emulators.nix
   ];
 
   home = {
