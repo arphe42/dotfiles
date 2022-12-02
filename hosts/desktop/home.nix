@@ -9,15 +9,19 @@
   home = {
     packages = with pkgs; [
       flameshot
+      lxappearance
 
       pcmanfm
       keepassxc
+      spotify
+      onlyoffice-bin
+
       discord
       protonup-ng
       heroic
       lutris
+      protontricks
       prismlauncher          # minecraft launcher
-      spotify
 
       gnome.adwaita-icon-theme
       networkmanagerapplet

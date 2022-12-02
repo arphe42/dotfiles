@@ -54,7 +54,7 @@
     isNormalUser = true;
     description = "Raphael Drouin";
     extraGroups = [ "wheel" "networkmanager" ];
-    shell = pkgs.bash;                                     # Default shell
+    shell = pkgs.zsh;                                     # Default shell
   };
 
   nixpkgs.config.allowUnfree = true;                       # Allow unfree packages

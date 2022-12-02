@@ -1,6 +1,10 @@
 { config, lib, pkgs, user, ... }:
 
 {
+  imports = [
+    ../modules/programs/shells.nix
+  ];
+
   home = {
     username = "${user}";
     homeDirectory = "/home/${user}";
@@ -10,13 +14,13 @@
       btop
       ranger
       pfetch
-      git
       gh
       lazygit
 
       xscreensaver
       numlockx
       picom
+      playerctl
 
       qpwgraph
       pulsemixer
@@ -35,6 +39,12 @@
     home-manager.enable = true;
 
     bat.enable = true;
+
+    git = {
+      enable = true;
+      userName = "arphe42";
+      userEmail = "arphe42@gmail.com";
+    };
 
     neovim = {
       enable = true;
@@ -62,6 +72,13 @@
 
         nmap <F6> :NERDTreeToggle<CR>               " F6 opens NERDTree
       '';
+    };
+
+    starship = {
+      enable = true;
+      settings = {
+        add_newline = false;
+      };
     };
   };
 }
