@@ -81,6 +81,8 @@
       EDITOR = "nvim";
       VISUAL = "nvim";
     };
+    shells = with pkgs; [ zsh bash ];
+    pathsToLink = [ "/share/zsh" ];
     systemPackages = with pkgs; [                          # Default packages system-wide
       neovim
       git

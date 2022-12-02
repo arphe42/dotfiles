@@ -73,12 +73,5 @@
         nmap <F6> :NERDTreeToggle<CR>               " F6 opens NERDTree
       '';
     };
-
-    starship = {
-      enable = true;
-      settings = {
-        add_newline = false;
-      };
-    };
   };
 }
