@@ -14,13 +14,16 @@
       btop
       ranger
       pfetch
+      git
       gh
       lazygit
+      tree
 
       xscreensaver
       numlockx
       picom
       playerctl
+      pamixer   #audio control for pulseaudio
 
       qpwgraph
       pulsemixer
@@ -30,6 +33,7 @@
       rofi
       alacritty
       firefox
+      vscode
     ];
     stateVersion = "22.11";
   };
@@ -40,10 +44,17 @@
 
     bat.enable = true;
 
-    git = {
+    #git = {
+    #  enable = true;
+    #  userName = "arphe42";
+    #  userEmail = "arphe42@gmail.com";
+    #};
+
+    tmux = {
       enable = true;
-      userName = "arphe42";
-      userEmail = "arphe42@gmail.com";
+      extraConfig = ''
+        set -g mouse on
+      '';
     };
 
     neovim = {

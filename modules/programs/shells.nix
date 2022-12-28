@@ -6,6 +6,7 @@ let
     l  = "ls -al";
     ll = "ls -l";
     update = "sudo nixos-rebuild switch --flake ~/dotfiles#desktop";
+    ".." = "cd ..";
   };
 in
 {
@@ -15,6 +16,11 @@ in
       settings = {
         add_newline = false;
       };
+    };
+
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
     };
 
     zsh = {
