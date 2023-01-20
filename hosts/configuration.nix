@@ -60,6 +60,8 @@
     shell = pkgs.zsh;                                     # Default shell
   };
 
+  nixpkgs.config.allowUnfree = true;                       # Allow unfree packages
+
   nix = {                                                  # Nix Package Manager settings
     settings = {
       experimental-features = [ "nix-command" "flakes" ];  # Enable nixFlakes

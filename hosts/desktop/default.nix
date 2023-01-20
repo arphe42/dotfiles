@@ -3,7 +3,8 @@
 {
   imports =
     [(./hardware-configuration.nix)] ++
-    [(../../modules/desktop/plasma/default.nix)];
+    [(../../modules/desktop/plasma/default.nix)] ++
+    [(../../modules/hardware/bluetooth.nix)];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;    # Use the latest kernel
