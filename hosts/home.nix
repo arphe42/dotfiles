@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../modules/programs/neovim.nix
+    ../modules/programs/neovim/neovim.nix
     ../modules/programs/shells.nix
   ];
   home = {
@@ -23,6 +23,7 @@
 
       alacritty
       brave
+      piper
     ];
     stateVersion = "22.11";
   };
