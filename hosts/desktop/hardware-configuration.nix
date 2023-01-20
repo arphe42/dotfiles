@@ -14,17 +14,17 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/5ba2719b-8945-40d9-b376-cdc426a3f689";
+    { device = "/dev/disk/by-uuid/3029e21c-7339-4407-8ae8-47273f201e3b";
       fsType = "ext4";
     };
 
   fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/1218-D4F6";
+    { device = "/dev/disk/by-uuid/1286-06CD";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/62ef6899-050c-4f33-b4b5-16b894c92e9c"; }
+    [ { device = "/dev/disk/by-uuid/be5c6c4d-8fc8-486b-be57-bc3a80a375be"; }
     ];
 
   fileSystems."/home/raphael/disk/ssd" =
@@ -45,5 +45,6 @@
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp36s0.useDHCP = lib.mkDefault true;
 
+  nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

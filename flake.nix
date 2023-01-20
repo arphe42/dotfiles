@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "NixOS Configuration";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -13,20 +13,13 @@
 
   outputs = inputs @ { self, nixpkgs, home-manager, ... }:
     let
-      system = "x86_64-linux";
       user = "raphael";
-
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      };
-
-      lib = nixpkgs.lib;
+      location = "$HOME/dotfiles";
     in {
       nixosConfigurations = (
           import ./hosts {
             inherit (nixpkgs) lib;
-            inherit inputs user system home-manager;
+            inherit inputs nixpkgs home-manager user location;
           }
         );
       };
