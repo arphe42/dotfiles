@@ -11,7 +11,7 @@
 
     packages = with pkgs; [
       flameshot
-
+      rofi
 
       git
       gh
@@ -21,6 +21,7 @@
       pfetch
       pulsemixer
 
+      feh
       xdotool
       lxsession
       unzip
@@ -44,6 +45,13 @@
 
       gnome.adwaita-icon-theme
     ];
+
+    sessionVariables = {
+      EDITOR = "nvim";
+      BROWSER = "firefox";
+      TERMINAL = "alacritty";
+    };
+
     stateVersion = "22.11";
   };
 
