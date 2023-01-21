@@ -4,7 +4,7 @@
   imports =
     [(./hardware-configuration.nix)] ++
     [(../../modules/displayManager/lightdm.nix)] ++
-    [(../../modules/desktop/awesome/default.nix)] ++
+    [(../../modules/desktop/xfce+awesome.nix)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
 

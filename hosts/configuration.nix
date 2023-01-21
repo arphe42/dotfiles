@@ -5,9 +5,13 @@
   i18n.defaultLocale = "en_CA.utf8";
 
   console = {
-    font = "Lat2-Terminus16";
+    font = "Hack Nerd Font";
     keyMap = "us";
   };
+
+  fonts.fonts = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+  ];
 
   services = {
     xserver = {
