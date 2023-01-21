@@ -3,7 +3,8 @@
 {
   imports =
     [(./hardware-configuration.nix)] ++
-    [(../../modules/desktop/plasma/default.nix)] ++
+    [(../../modules/desktop/awesome/default.nix)] ++
+    [(../../modules/programs/steam.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
 
   boot = {

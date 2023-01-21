@@ -10,6 +10,9 @@
     homeDirectory = "/home/${user}";
 
     packages = with pkgs; [
+      flameshot
+
+
       git
       gh
       lazygit
@@ -20,10 +23,26 @@
 
       xdotool
       lxsession
+      unzip
+      unixtools.xxd
+      xorg.xwininfo
+      yad
+
+      qpwgraph
 
       alacritty
+      firefox
       brave
-      piper
+      pcmanfm
+      keepassxc
+      spotify
+      onlyoffice-bin
+      discord
+      heroic
+      lutris
+      prismlauncher
+
+      gnome.adwaita-icon-theme
     ];
     stateVersion = "22.11";
   };
