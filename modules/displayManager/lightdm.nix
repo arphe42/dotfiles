@@ -5,7 +5,7 @@
     xserver = {
       enable = true;
       displayManager = {
-        startx.enable = true;
+        lightdm.enable = true;
       };
     };
   }; 
