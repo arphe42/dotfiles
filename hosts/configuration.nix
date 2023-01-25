@@ -10,7 +10,15 @@
   };
 
   fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ]; })
+    font-awesome                     # Icons
+    corefonts                        # MS
+    jetbrains-mono
+    (nerdfonts.override {
+      fonts = [ 
+        "FiraCode"
+        "DroidSansMono"
+      ];
+    })
   ];
 
   services = {
@@ -29,7 +37,7 @@
 
     openssh = {
       enable = true;
-      passwordAuthentication = false;
+      settings.passwordAuthentication = false;
     };
 
     gvfs.enable = true;
@@ -54,6 +62,17 @@
         xdg-desktop-portal-wlr
       ];
     };
+  };
+
+  # Disable sudo
+  security.sudo.enable = false;
+  # Use doas
+  security.doas = {
+    enable = true;
+    extraRules = [{
+      groups = [ "wheel" ];
+      keepEnv = true;
+    }];
   };
 
   # Users

@@ -29,6 +29,7 @@
 
         set number
         set relativenumber
+        set clipboard=unnamedplus
 
         nmap <F6> :NvimTreeToggle<CR>
       '';

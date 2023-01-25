@@ -2,7 +2,7 @@
 
 {
   services.xserver = {
-    dektopManager = {
+    desktopManager = {
       xterm.enable = false;
       xfce = {
         enable = true;

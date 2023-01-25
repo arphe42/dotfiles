@@ -5,7 +5,7 @@ let
     ls = "ls --color";
     l  = "ls -al";
     ll = "ls -l";
-    update = "sudo nixos-rebuild switch --flake ~/dotfiles#desktop";
+    update = "doas nixos-rebuild switch --flake ~/dotfiles#desktop";
     ".." = "cd ..";
   };
 in

@@ -10,9 +10,6 @@
     homeDirectory = "/home/${user}";
 
     packages = with pkgs; [
-      flameshot
-      rofi
-
       git
       gh
       lazygit
@@ -20,35 +17,12 @@
       btop
       pfetch
       pulsemixer
-
-      feh
-      xdotool
-      lxsession
       unzip
-      unixtools.xxd
-      xorg.xwininfo
-      yad
-
-      qpwgraph
-
-      alacritty
-      firefox
-      brave
-      pcmanfm
-      keepassxc
-      spotify
-      onlyoffice-bin
-      discord
-      heroic
-      lutris
-      prismlauncher
-
-      gnome.adwaita-icon-theme
     ];
 
     sessionVariables = {
       EDITOR = "nvim";
-      BROWSER = "firefox";
+      BROWSER = "brave";
       TERMINAL = "alacritty";
     };
 
