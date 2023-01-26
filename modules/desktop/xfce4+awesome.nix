@@ -18,6 +18,6 @@
         ];
       };
     };
-    displayManager.defaultSession = "xfce+awesome";
+    #displayManager.defaultSession = "xfce+awesome";
   };
 }

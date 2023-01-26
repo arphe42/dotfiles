@@ -3,6 +3,9 @@
 {
   services = {
     xserver = {
+      desktopManager = {
+        xterm.enable = false;
+      };
       windowManager = {
         awesome = {
           enable = true;

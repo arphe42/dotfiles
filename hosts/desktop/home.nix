@@ -13,6 +13,8 @@
       pcmanfm
       keepassxc
       qpwgraph # pipewire config gui
+      transmission-qt
+      deluge-gtk
 
       # games
       xivlauncher

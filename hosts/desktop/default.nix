@@ -3,7 +3,8 @@
 {
   imports =
     [(./hardware-configuration.nix)] ++
-    [(../../modules/displayManager/lightdm.nix)] ++
+    [(../../modules/displayManager/startx.nix)] ++
+    [(../../modules/displayManager/sddm.nix)] ++
     [(../../modules/desktop/xfce4+awesome.nix)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
@@ -29,6 +30,31 @@
     networkmanager.enable = true;
   };
 
+  # Screen layout
+  services.xserver.xrandrHeads = [
+    {
+      output = "DP-4";
+      monitorConfig = ''
+        Option "PreferredMode" "3440x1440"
+        Option "Rate" "144"
+      '';
+      primary = true;
+    }
+    {
+      output = "DP-2";
+      monitorConfig = ''
+        Option "PreferredMode" "1080x1920"
+        Option "Rate" "144"
+      '';
+    }
+    {
+      output = "HDMI-0";
+      monitorConfig = ''
+        Option "PreferredMode" "1920x1080"
+        Option "Rate" "144"
+      '';
+    }
+  ];
   # Nvidia Driver 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl = {
@@ -49,6 +75,17 @@
       enable = true;
     };
   };
+
+  services.deluge.enable = true;
+  services.deluge.openFirewall = true;
+
+  services.transmission.enable = true;
+  services.transmission.openFirewall = true;
+  services.transmission.user = "raphael";
+
+  #programs.weylus = {
+  #  enable = true;
+  #};
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
