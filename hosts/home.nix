@@ -18,6 +18,7 @@
       pfetch
       pulsemixer
       unzip
+      p7zip
     ];
 
     sessionVariables = {
