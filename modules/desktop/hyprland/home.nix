@@ -15,7 +15,7 @@
 
       bindr=SUPER, SUPER_L, exec, pkill wofi || wofi --show drun
 
-      bind = $modKey, Q, killactive
+      bind = $modKey, Q, '' + ./. + ''/scripts/minimizeSteam.sh
       bind = $modKey, Escape, exit
 
       bindm = $modKey, mouse:272, movewindow
