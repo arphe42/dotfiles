@@ -13,12 +13,21 @@
 
       bind = $modKey, Return, exec, alacritty
 
-      bind = $modKey, P, exec, wofi --show drun
+      bindr=SUPER, SUPER_L, exec, pkill wofi || wofi --show drun
+
       bind = $modKey, Q, killactive
       bind = $modKey, Escape, exit
 
       bindm = $modKey, mouse:272, movewindow
+      bindm = $modKey, mouse:272, bringactivetotop
       bindm = $modKey, mouse:273, resizewindow
+      bindm = $modKey, mouse:273, bringactivetotop
+
+      bind = $modKey, F, fullscreen
+      bind = $modKey, Space, togglefloating
+
+      bind = $modKey, Tab, cyclenext
+      bind = $modKey, Tab, bringactivetotop
 
       bind = $modKey, 1, workspace, 1
       bind = $modKey, 2, workspace, 2
@@ -30,6 +39,23 @@
       bind = $modKey, 8, workspace, 8
       bind = $modKey, 9, workspace, 9
       bind = $modKey, 0, workspace, 10
+
+      bind = $modKey, Left, workspace, m-1
+      bind = $modKey, Right, workspace, m+1
+
+      bind = $modKey + SHIFT, 1, movetoworkspace, 1
+      bind = $modKey + SHIFT, 2, movetoworkspace, 2
+      bind = $modKey + SHIFT, 3, movetoworkspace, 3
+      bind = $modKey + SHIFT, 4, movetoworkspace, 4
+      bind = $modKey + SHIFT, 5, movetoworkspace, 5
+      bind = $modKey + SHIFT, 6, movetoworkspace, 6
+      bind = $modKey + SHIFT, 7, movetoworkspace, 7
+      bind = $modKey + SHIFT, 8, movetoworkspace, 8
+      bind = $modKey + SHIFT, 9, movetoworkspace, 9
+      bind = $modKey + SHIFT, 0, movetoworkspace, 10
+
+      bind = $modKey + SHIFT, Left, movetoworkspace, m-1
+      bind = $modKey + SHIFT, Right, movetoworkspace, m+1
     '';
   };
 }
