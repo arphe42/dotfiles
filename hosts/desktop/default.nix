@@ -9,6 +9,11 @@
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
 
+    programs.hyprland = {
+      enable = true;
+      nvidiaPatches = true;
+    };
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;    # Use the latest kernel
 
@@ -23,11 +28,32 @@
       };
       timeout = 2;
     };
+    kernelParams = [
+      "splash"
+      "nvidia-drm.modeset=1"
+    ];
   };
 
+  
   networking = {
     hostName = "raphaelpc";
     networkmanager.enable = true;
+
+    # needed for genshin impact in home-manager
+    extraHosts = ''
+      0.0.0.0 overseauspider.yuanshen.com
+      0.0.0.0 log-upload-os.hoyoverse.com
+
+      0.0.0.0 log-upload.mihoyo.com
+      0.0.0.0 uspider.yuanshen.com
+      0.0.0.0 sg-public-data-api.hoyoverse.com
+      
+      0.0.0.0 prd-lender.cdp.internal.unity3d.com
+      0.0.0.0 thind-prd-knob.data.ie.unity3d.com
+      0.0.0.0 thind-gke-usc.prd.data.corp.unity3d.com
+      0.0.0.0 cdp.cloud.unity3d.com
+      0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
+    '';
   };
 
   # Screen layout
@@ -83,9 +109,15 @@
   services.transmission.openFirewall = true;
   services.transmission.user = "raphael";
 
-  #programs.weylus = {
-  #  enable = true;
-  #};
+  programs.weylus = {
+    enable = true;
+    openFirewall = true;
+    users = [ "raphael" ];
+  };
+
+  environment.variables = {
+    WLR_NO_HARDWARE_CURSORS = "1";
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

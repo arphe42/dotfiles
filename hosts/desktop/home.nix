@@ -3,6 +3,7 @@
 {
   imports = [
     ../../modules/programs/an-anime-game-launcher.nix
+    ../../modules/desktop/hyprland/home.nix
   ];
   home = {
     packages = with pkgs; [
@@ -15,10 +16,12 @@
       spotify
       discord
       pcmanfm
+      krita
       keepassxc
       qpwgraph # pipewire config gui
       transmission-qt
       deluge-gtk
+      godot_4
 
       # games
       xivlauncher
@@ -33,10 +36,21 @@
       winetricks
       protontricks
 
+      # Emulations
+      cemu
+      yuzu-mainline
+      citra-nightly
+      dolphin-emu
+
       # window manager thing
       rofi
       feh
       flameshot
+
+      wofi
+      swww
+      waybar
+      mpd
       
       # system
       numlockx
@@ -44,11 +58,14 @@
       lxsession
       #xscreensaver
       xclip  # to make vim work with system clipboard X11
+      wl-clipboard
+      clipman
       # wl-copy wl-paste  # to make vim work with system clipboard Wayland
       unixtools.xxd
       xorg.xwininfo
       yad
       python3Full
+      openjdk
 
       # Icons
       gnome.adwaita-icon-theme
