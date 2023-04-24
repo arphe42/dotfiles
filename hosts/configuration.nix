@@ -84,6 +84,8 @@
     shell = pkgs.zsh;                                     # Default shell
   };
 
+  programs.zsh.enable = true;
+
   nixpkgs.config.allowUnfree = true;                       # Allow unfree packages
 
   nix = {                                                  # Nix Package Manager settings

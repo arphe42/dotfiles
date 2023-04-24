@@ -23,7 +23,7 @@
       deluge-gtk
       godot_4
 
-      # games
+      # gamesxdotool windowunmap $(xdotool getactivewindow)
       xivlauncher
       prismlauncher
       heroic
@@ -39,7 +39,7 @@
       # Emulations
       cemu
       yuzu-mainline
-      citra-nightly
+      #citra-nightly
       dolphin-emu
 
       # window manager thing
@@ -47,10 +47,13 @@
       feh
       flameshot
 
-      wofi
+      #wofi
       swww
       waybar
       mpd
+      jq
+      gamescope
+      xdg-desktop-portal-hyprland
       
       # system
       numlockx

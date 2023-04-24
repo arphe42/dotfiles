@@ -6,13 +6,9 @@
     [(../../modules/displayManager/startx.nix)] ++
     [(../../modules/displayManager/lightdm.nix)] ++
     [(../../modules/desktop/xfce4+awesome.nix)] ++
+    [(../../modules/desktop/hyprland)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
-
-    programs.hyprland = {
-      enable = true;
-      nvidiaPatches = true;
-    };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;    # Use the latest kernel
