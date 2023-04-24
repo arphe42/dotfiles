@@ -47,9 +47,9 @@
       feh
       flameshot
 
-      #wofi
+      wofi
       swww
-      waybar
+      #waybar
       mpd
       jq
       gamescope

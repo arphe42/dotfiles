@@ -1,10 +1,20 @@
 { confi, lib, pkgs, host, system, hyprland, ... }:
 
-programs.hyprland = {
-  enable = true;
-  nvidiaPatches = true;
-  xwayland = {
+{
+  imports = [../../programs/waybar.nix];
+
+  programs.hyprland = {
     enable = true;
-    hidpi = true;
-  }
+    nvidiaPatches = true;
+    xwayland = {
+      enable = true;
+      hidpi = true;
+    };
+  };
+
+  nixpkgs.overlays = [    # Waybar with experimental features
+    (final: prev: {
+      waybar = hyprland.packages.${system}.waybar-hyprland;
+    })
+  ];
 }
