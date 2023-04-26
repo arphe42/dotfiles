@@ -20,6 +20,8 @@
         nvim-treesitter
         nvim-lspconfig
         nvim-cmp
+
+        catppuccin-nvim
       ];
       extraConfig = ''
         luafile '' + ./. + ''/settings.lua

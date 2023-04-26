@@ -10,6 +10,10 @@
     gamemode.enable = true;
   };
 
+  environment.systemPackages = with pkgs; [
+    steam-run
+  ];
+
   hardware.steam-hardware.enable = true;
 
   nixpkgs.config = {
@@ -18,5 +22,14 @@
       "steam-original"
       "steam-runtime"
     ];
+  };
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    steam = pkgs.steam.override {
+      extraPkgs = pkgs: with pkgs; [
+        gamescope
+        mangohud
+      ];
+    };
   };
 }

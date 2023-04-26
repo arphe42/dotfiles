@@ -3,9 +3,9 @@
 {
   imports =
     [(./hardware-configuration.nix)] ++
-    [(../../modules/displayManager/startx.nix)] ++
-    [(../../modules/displayManager/lightdm.nix)] ++
-    [(../../modules/desktop/xfce4+awesome.nix)] ++
+    #[(../../modules/displayManager/startx.nix)] ++
+    #[(../../modules/displayManager/lightdm.nix)] ++
+    #[(../../modules/desktop/xfce4+awesome.nix)] ++
     [(../../modules/desktop/hyprland)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
@@ -98,6 +98,8 @@
     };
   };
 
+  security.polkit.enable = true;
+
   services.deluge.enable = true;
   services.deluge.openFirewall = true;
 
@@ -105,15 +107,16 @@
   services.transmission.openFirewall = true;
   services.transmission.user = "raphael";
 
-  programs.weylus = {
-    enable = true;
-    openFirewall = true;
-    users = [ "raphael" ];
+  programs = {
+    weylus = {
+      enable = true;
+      openFirewall = true;
+      users = [ "raphael" ];
+    };
+    nm-applet.enable = true;
   };
 
-  environment.variables = {
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
+  
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

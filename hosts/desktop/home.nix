@@ -4,16 +4,16 @@
   imports = [
     ../../modules/programs/an-anime-game-launcher.nix
     ../../modules/desktop/hyprland/home.nix
+    ../../modules/programs/alacritty.nix
   ];
   home = {
     packages = with pkgs; [
       # apps
-      alacritty
       brave
-      librewolf
       firefox
       onlyoffice-bin
       spotify
+      spicetify-cli
       discord
       pcmanfm
       krita
@@ -23,7 +23,7 @@
       deluge-gtk
       godot_4
 
-      # gamesxdotool windowunmap $(xdotool getactivewindow)
+      # games
       xivlauncher
       prismlauncher
       heroic
@@ -47,13 +47,21 @@
       feh
       flameshot
 
+      lxappearance
+      xfce.xfce4-settings
+      dunst
+      libsForQt5.polkit-kde-agent
+
       wofi
       swww
-      #waybar
+      swayidle
+      waybar
       mpd
       jq
       gamescope
       xdg-desktop-portal-hyprland
+      grim
+      slurp
       
       # system
       numlockx

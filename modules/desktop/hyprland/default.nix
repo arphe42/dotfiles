@@ -12,9 +12,11 @@
     };
   };
 
-  nixpkgs.overlays = [    # Waybar with experimental features
-    (final: prev: {
-      waybar = hyprland.packages.${system}.waybar-hyprland;
+    nixpkgs.overlays = [
+    (self: super: {
+      waybar = super.waybar.overrideAttrs (oldAttrs: {
+        mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+      });
     })
   ];
 }
