@@ -1,6 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, hyprland, ... }:
 
 {
+  imports = [ hyprland.homeManagerModules.default ];
   wayland.windowManager.hyprland = {
     enable = true;
 
@@ -103,6 +104,7 @@
 
       bind = $modKey, F, fullscreen
       bind = $modKey, Space, togglefloating
+      bind = $modKey, M, fullscreen, 1
 
       bind = $modKey, Tab, cyclenext
       bind = $modKey, Tab, bringactivetotop
@@ -145,9 +147,10 @@
       # Set wallpapers
       $WallpaperDir = /home/raphael/disk/ssd/wallpapers
       exec-once = swww init
-      exec-once = sleep 1; swww img -o HDMI-A-1 /home/raphael/disk/ssd/wallpapers/Anime\ Gif\ Wallpaper\ Hd\ :\ Masaüstü,Arkaplan,Walpaper\ hareketli.gif
-      exec-once = sleep 1; swww img -o DP-3 $WallpaperDir/Anime\ Girl\ Alone\ At\ Mountain\ Cliff.jpg
-      exec-once = sleep 1; swww img -o DP-2 $WallpaperDir/wp6070036-sad-sunset-anime-wallpapers.jpg
+      #exec-once = sleep 1; swww img -o HDMI-A-1 /home/raphael/disk/ssd/wallpapers/Anime\ Gif\ Wallpaper\ Hd\ :\ Masaüstü,Arkaplan,Walpaper\ hareketli.gif
+      #exec-once = sleep 1; swww img -o DP-3 $WallpaperDir/Anime\ Girl\ Alone\ At\ Mountain\ Cliff.jpg
+      #exec-once = sleep 1; swww img -o DP-3 $WallpaperDir/final.gif
+      #exec-once = sleep 1; swww img -o DP-2 $WallpaperDir/wp6070036-sad-sunset-anime-wallpapers.jpg
     '';
   };
 }

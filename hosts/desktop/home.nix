@@ -2,9 +2,8 @@
 
 {
   imports = [
-    ../../modules/programs/an-anime-game-launcher.nix
-    ../../modules/desktop/hyprland/home.nix
     ../../modules/programs/alacritty.nix
+    ../../modules/desktop/hyprland/home.nix
   ];
   home = {
     packages = with pkgs; [
@@ -22,10 +21,11 @@
       transmission-qt
       deluge-gtk
       godot_4
+      mpv
 
       # games
       xivlauncher
-      prismlauncher
+      #prismlauncher
       heroic
       lutris
       steamtinkerlaunch
@@ -37,10 +37,16 @@
       protontricks
 
       # Emulations
+      emulationstation
+      retroarchFull
       cemu
-      yuzu-mainline
-      #citra-nightly
+      #yuzu-mainline
+      yuzu-early-access
+      ryujinx
+      citra-nightly
       dolphin-emu
+
+      cdecrypt
 
       # window manager thing
       rofi
@@ -54,6 +60,7 @@
 
       wofi
       swww
+      mpvpaper
       swayidle
       waybar
       mpd
@@ -64,8 +71,14 @@
       slurp
       
       # system
+      wlr-randr
+      wlroots
+      ffmpeg
+      gifski
+      xorg.xrandr
       numlockx
       xdotool
+      libnotify
       lxsession
       #xscreensaver
       xclip  # to make vim work with system clipboard X11
@@ -77,12 +90,32 @@
       yad
       python3Full
       openjdk
+      gnome.gnome-themes-extra
 
       # Icons
       gnome.adwaita-icon-theme
       papirus-icon-theme
       colloid-icon-theme
+      catppuccin-gtk
     ];
+  };
+
+  qt.enable = true;
+  qt.style.name = "adwaita-dark";
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita-dark";
+      #package = pkgs.catppuccin-gtk.override {
+      #  accents = [ "red" ];
+      #  size = "standard";
+      #  tweaks = [ "rimless" "black" ];
+      #  variant = "macchiato";
+      #};
+    };
+    cursorTheme = {
+      name = "Adwaita";
+    };
   };
 
   # Bluetooth headset buttons

@@ -37,7 +37,9 @@
 
     openssh = {
       enable = true;
-      settings.passwordAuthentication = false;
+      settings = {
+        PasswordAuthentication = false;
+      };
     };
 
     gvfs.enable = true;

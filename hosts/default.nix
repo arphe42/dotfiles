@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, hyprland, user, location, ... }:
+{ lib, inputs, nixpkgs, home-manager, hyprland, aagl, user, location, ... }:
 
 let
   system = "x86_64-linux";
@@ -15,10 +15,9 @@ in
   desktop = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs user location;
+      inherit inputs user location hyprland aagl;
     };
     modules = [
-      hyprland.nixosModules.default
       ./desktop
       ./configuration.nix
 
@@ -26,11 +25,10 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit user;
+          inherit user hyprland;
         };
         home-manager.users.${user} = {
           imports = [
-            hyprland.homeManagerModules.default
             (import ./home.nix)] ++ 
             [(import ./desktop/home.nix)
           ];
@@ -38,7 +36,4 @@ in
       }
     ];
   };
-
-
-
 }

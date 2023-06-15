@@ -27,13 +27,21 @@
     [ { device = "/dev/disk/by-uuid/be5c6c4d-8fc8-486b-be57-bc3a80a375be"; }
     ];
 
+  # the 500GB SSD
   fileSystems."/home/raphael/disk/ssd" =
     { device = "/dev/disk/by-uuid/a9d66443-9e6b-4c98-b48f-2a11fd523aac";
       fsType = "ext4";
     };
 
+  # 1TB HDD
   fileSystems."/home/raphael/disk/hdd" =
     { device = "/dev/disk/by-uuid/f586fc22-4a03-4cea-be63-d18f7e737daf";
+      fsType = "ext4";
+    };
+
+  # 1TB SSD primary game
+  fileSystems."/home/raphael/disk/game" =
+    { device = "/dev/disk/by-uuid/2ff7f83c-0127-442d-88f5-13fa65911e8f";
       fsType = "ext4";
     };
 

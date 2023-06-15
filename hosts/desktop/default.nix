@@ -1,14 +1,17 @@
-{ config, pkgs, lib, user, ... }:
+{ config, pkgs, lib, user, hyprland, aagl, ... }:
 
 {
   imports =
     [(./hardware-configuration.nix)] ++
-    #[(../../modules/displayManager/startx.nix)] ++
+    [(../../modules/displayManager/startx.nix)] ++
     #[(../../modules/displayManager/lightdm.nix)] ++
     #[(../../modules/desktop/xfce4+awesome.nix)] ++
     [(../../modules/desktop/hyprland)] ++
+    [(../../modules/desktop/gnome)] ++
     [(../../modules/programs/steam.nix)] ++
+    [(../../modules/programs/an-anime-game-launcher.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
+
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;    # Use the latest kernel
@@ -28,55 +31,16 @@
       "splash"
       "nvidia-drm.modeset=1"
     ];
+
+    supportedFilesystems = [ "ntfs" "exfat" ];
   };
 
   
   networking = {
     hostName = "raphaelpc";
     networkmanager.enable = true;
-
-    # needed for genshin impact in home-manager
-    extraHosts = ''
-      0.0.0.0 overseauspider.yuanshen.com
-      0.0.0.0 log-upload-os.hoyoverse.com
-
-      0.0.0.0 log-upload.mihoyo.com
-      0.0.0.0 uspider.yuanshen.com
-      0.0.0.0 sg-public-data-api.hoyoverse.com
-      
-      0.0.0.0 prd-lender.cdp.internal.unity3d.com
-      0.0.0.0 thind-prd-knob.data.ie.unity3d.com
-      0.0.0.0 thind-gke-usc.prd.data.corp.unity3d.com
-      0.0.0.0 cdp.cloud.unity3d.com
-      0.0.0.0 remote-config-proxy-prd.uca.cloud.unity3d.com
-    '';
   };
 
-  # Screen layout
-  services.xserver.xrandrHeads = [
-    {
-      output = "DP-4";
-      monitorConfig = ''
-        Option "PreferredMode" "3440x1440"
-        Option "Rate" "144"
-      '';
-      primary = true;
-    }
-    {
-      output = "DP-2";
-      monitorConfig = ''
-        Option "PreferredMode" "1080x1920"
-        Option "Rate" "144"
-      '';
-    }
-    {
-      output = "HDMI-0";
-      monitorConfig = ''
-        Option "PreferredMode" "1920x1080"
-        Option "Rate" "144"
-      '';
-    }
-  ];
   # Nvidia Driver 
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.opengl = {
@@ -116,7 +80,6 @@
     nm-applet.enable = true;
   };
 
-  
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

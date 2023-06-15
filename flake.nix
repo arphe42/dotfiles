@@ -8,6 +8,10 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    aagl = {
+      url = "github:ezKEa/aagl-gtk-on-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -15,7 +19,7 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, aagl, ... }:
     let
       user = "raphael";
       location = "$HOME/dotfiles";
@@ -23,7 +27,7 @@
       nixosConfigurations = (
           import ./hosts {
             inherit (nixpkgs) lib;
-            inherit inputs nixpkgs home-manager hyprland user location;
+            inherit inputs nixpkgs home-manager hyprland aagl user location;
           }
         );
       };

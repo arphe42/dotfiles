@@ -9,26 +9,28 @@ g.loaded_netrwPlugin = 1
 vim.opt.termguicolors = true
 
 -- empty setup using defaults
-require("nvim-tree").setup()
+require("nvim-tree").setup({
+	on_attach = on_attach,
+})
 
 -- OR setup with some options
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    adaptive_size = true,
-    mappings = {
-      list = {
-        { key = "u", action = "dir_up" },
-      },
-    },
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
+--require("nvim-tree").setup({
+--  sort_by = "case_sensitive",
+--  view = {
+--    adaptive_size = true,
+--    mappings = {
+--      list = {
+--        { key = "u", action = "dir_up" },
+--      },
+--    },
+--  },
+--  renderer = {
+--    group_empty = true,
+--  },
+--  filters = {
+--    dotfiles = true,
+--  },
+--})
 
 require("catppuccin").setup({
     flavour = "macchiato", -- latte, frappe, macchiato, mocha
@@ -69,6 +71,7 @@ require("catppuccin").setup({
         telescope = true,
         notify = false,
         mini = false,
+	treesitter = true,
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
 })

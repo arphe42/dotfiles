@@ -1,7 +1,8 @@
 { confi, lib, pkgs, host, system, hyprland, ... }:
 
 {
-  imports = [../../programs/waybar.nix];
+  imports = [../../programs/waybar.nix] ++ 
+            [ hyprland.nixosModules.default ];
 
   programs.hyprland = {
     enable = true;
