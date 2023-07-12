@@ -12,10 +12,10 @@
         enable = true;
         configurationLimit = 8;
       };
-      efi = {
-        canTouchEfiVariables = true;
-        efiSysMountPoint = "/boot/efi";
-      };
+      #efi = {
+      #  canTouchEfiVariables = true;
+      #  efiSysMountPoint = "/boot/efi";
+      #};
       timeout = 2;
     };
 

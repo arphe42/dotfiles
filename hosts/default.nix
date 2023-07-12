@@ -61,6 +61,9 @@ in
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
           inherit user;
+          host = {
+            hostName = "nas";
+          };
         };
         home-manager.users.${user} = {
           imports = [
