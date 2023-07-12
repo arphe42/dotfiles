@@ -9,17 +9,28 @@
     keyMap = "us";
   };
 
-  fonts.fonts = with pkgs; [
-    font-awesome                     # Icons
-    corefonts                        # MS
-    jetbrains-mono
-    (nerdfonts.override {
-      fonts = [ 
-        "FiraCode"
-        "DroidSansMono"
-      ];
-    })
-  ];
+  fonts = {
+    fonts = with pkgs; [
+      font-awesome                     # Icons
+      corefonts                        # MS
+      jetbrains-mono
+      (nerdfonts.override {
+        fonts = [ 
+          "FiraCode"
+          "DroidSansMono"
+        ];
+      })
+    ];
+
+    enableDefaultFonts = true;
+    fontconfig = {
+      defaultFonts = {
+        serif = [ "jetbrains-mono" ];
+        sansSerif = [ "jetbrains-mono" ];
+        monospace = [ "jetbrains-mono" ];
+      };
+    };
+  };
 
   services = {
     xserver = {
@@ -57,9 +68,11 @@
 
   # Flatpak
   services.flatpak.enable = true;
+  services.dbus.enable = true;
   xdg = {
     portal = {
       enable = true;
+      #wlr.enable = true;
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
         #xdg-desktop-portal-wlr

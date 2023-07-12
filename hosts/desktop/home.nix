@@ -13,7 +13,7 @@
       onlyoffice-bin
       spotify
       spicetify-cli
-      discord
+      discord  betterdiscordctl
       pcmanfm
       krita
       keepassxc
@@ -22,10 +22,11 @@
       deluge-gtk
       godot_4
       mpv
+      ventoy-full
 
       # games
       xivlauncher
-      #prismlauncher
+      prismlauncher
       heroic
       lutris
       steamtinkerlaunch
@@ -49,30 +50,31 @@
       cdecrypt
 
       # window manager thing
-      rofi
       feh
-      flameshot
 
       lxappearance
-      xfce.xfce4-settings
       dunst
       libsForQt5.polkit-kde-agent
 
       wofi
+      grim
+      slurp
       swww
       mpvpaper
       swayidle
+      swaylock-effects
+      wlogout
       waybar
       mpd
       jq
       gamescope
       xdg-desktop-portal-hyprland
-      grim
-      slurp
       
       # system
+      qt5.qtwayland  qt6.qtwayland
       wlr-randr
       wlroots
+      xdg-utils
       ffmpeg
       gifski
       xorg.xrandr
@@ -91,6 +93,7 @@
       python3Full
       openjdk
       gnome.gnome-themes-extra
+      xow_dongle-firmware  # xbox wireless adapter driver
 
       # Icons
       gnome.adwaita-icon-theme

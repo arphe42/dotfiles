@@ -5,9 +5,7 @@
     [(./hardware-configuration.nix)] ++
     [(../../modules/displayManager/startx.nix)] ++
     #[(../../modules/displayManager/lightdm.nix)] ++
-    #[(../../modules/desktop/xfce4+awesome.nix)] ++
     [(../../modules/desktop/hyprland)] ++
-    [(../../modules/desktop/gnome)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/programs/an-anime-game-launcher.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
@@ -40,6 +38,8 @@
     hostName = "raphaelpc";
     networkmanager.enable = true;
   };
+
+  hardware.pulseaudio.enable = false;
 
   # Nvidia Driver 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -80,6 +80,16 @@
     nm-applet.enable = true;
   };
 
+  # needed for swaylock to have password
+  security.pam.services.swaylock.text = ''
+    # PAM configuration file for the swaylock screen locker. By default, it includes
+    # the 'login' configuration file (see /etc/pam.d/login)
+    auth include login
+  '';
+
+  systemd.user.extraConfig = ''
+    DefaultEnvironment="PATH=/run/current-system/sw/bin"
+  '';
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

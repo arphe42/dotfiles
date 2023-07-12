@@ -8,7 +8,7 @@
     extraConfig = ''
       # Monitor setup
       monitor=DP-3, 3440x1440@144, 1920x188, 1
-      monitor=DP-2, 1920x1080@144, 5360x0, 1, transform, 3
+      monitor=DP-1, 1920x1080@144, 5360x0, 1, transform, 3
       monitor=HDMI-A-1, 1920x1080@120, 0x188, 1
 
       # primary display for xwayland / games
@@ -22,13 +22,13 @@
       # Default workspace
       workspace = HDMI-A-1, 1
       workspace = DP-3, 2
-      workspace = DP-2, 3
+      workspace = DP-1, 3
 
       # environment variable
       env = XDG_CURRENT_DESKTOP,Hyprland
       env = XDG_SESSION_TYPE,wayland
       env = XDG_SESSION_DESKTOP,Hyprland
-      env = MOZ_ENABLE_WAYLAND,1
+      env = MOZ_ENABLE_WAYLAND,0
       env = _JAVA_AWT_WM_NONREPARENTING,1
       env = XCURSOR_SIZE,24
       env = QT_AUTO_SCREEN_SCALE_FACTOR,1
@@ -49,7 +49,6 @@
       env = __GLX_VENDOR_LIBRARY_NAME,nvidia
       env = __VK_LAYER_NV_optimus,NVIDIA_only
 
-
       general {
         gaps_in = 5
         gaps_out = 10
@@ -57,8 +56,8 @@
         col.active_border = rgba(7287fdee) rgba(e6e9efaa) 45deg
         col.inactive_border = rgba(179299aa)
 
-        #layout = dwindle
-        layout = master
+        layout = dwindle
+        #layout = master
       }
 
       decoration {
@@ -80,6 +79,10 @@
         key_press_enables_dpms = true
       }
 
+      dwindle {
+        no_gaps_when_only = true
+      }
+
       master {
         new_is_master = true
         no_gaps_when_only = true
@@ -90,21 +93,24 @@
       # Keybind
       $modKey = SUPER
 
+      bind = $modKey, space, exec, pkill wofi || wofi --show=drun
       bind = $modKey, Return, exec, alacritty
-
-      bindr=SUPER, SUPER_L, exec, pkill wofi || wofi --show drun
+      bind = $modKey, B, exec, firefox
+      bind = $modKey_SHIFT, B, exec, firefox -private-window
+      bind = $modKey, E, exec, pcmanfm
 
       bind = $modKey, Q, exec, '' + ./. + ''/scripts/minimizeSteam.sh
-      bind = $modKey, Escape, exit
+      bind = $modKey, Escape, exec, wlogout
 
       bindm = $modKey, mouse:272, movewindow
-      bindm = $modKey, mouse:272, bringactivetotop
+      bind = $modKey, mouse:272, bringactivetotop
       bindm = $modKey, mouse:273, resizewindow
-      bindm = $modKey, mouse:273, bringactivetotop
+      bind = $modKey, mouse:273, bringactivetotop
 
-      bind = $modKey, F, fullscreen
-      bind = $modKey, Space, togglefloating
+      bind = $modKey, F, togglefloating
+      bind = $modKey_SHIFT, F, fullscreen
       bind = $modKey, M, fullscreen, 1
+      bind = $modKey, Up, pin
 
       bind = $modKey, Tab, cyclenext
       bind = $modKey, Tab, bringactivetotop
@@ -137,20 +143,20 @@
       bind = $modKey + SHIFT, Left, movetoworkspace, m-1
       bind = $modKey + SHIFT, Right, movetoworkspace, m+1
 
+
+      # Window rules
+      windowrulev2 = float,class:^(pcmanfm)$,title:^(Removable medium is inserted)$
+      windowrulev2 = float,title:^(Bluetooth Devices)$
+      windowrulev2 = float,title:^(Authentication Required — PolicyKit1 KDE Agent)$
+
       # autostart
       exec-once = waybar
-      exec-once = swayidle -w timeout 600 "hyprctl dispatch dpms off"
+      exec-once = swayidle -w timeout 540 "swaylock" timeout 600 "hyprctl dispatch dpms off"
       exec-once = blueman-applet
       exec-once = nm-applet --indicator
       exec-once = /nix/store/$(ls -la /nix/store | grep 'polkit-kde-agent' | grep '4096' | awk '{print $9}' | sed -n '$p')/libexec/polkit-kde-authentication-agent-1 &
-
-      # Set wallpapers
-      $WallpaperDir = /home/raphael/disk/ssd/wallpapers
-      exec-once = swww init
-      #exec-once = sleep 1; swww img -o HDMI-A-1 /home/raphael/disk/ssd/wallpapers/Anime\ Gif\ Wallpaper\ Hd\ :\ Masaüstü,Arkaplan,Walpaper\ hareketli.gif
-      #exec-once = sleep 1; swww img -o DP-3 $WallpaperDir/Anime\ Girl\ Alone\ At\ Mountain\ Cliff.jpg
-      #exec-once = sleep 1; swww img -o DP-3 $WallpaperDir/final.gif
-      #exec-once = sleep 1; swww img -o DP-2 $WallpaperDir/wp6070036-sad-sunset-anime-wallpapers.jpg
+      exec-once = pcmanfm -d      # daemon for pcmanfm
+      exec-once = swww init       # wallpaper
     '';
   };
 }

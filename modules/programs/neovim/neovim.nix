@@ -17,9 +17,14 @@
         nvim-tree-lua
         nerdtree
 
+        barbar-nvim
+        gitsigns-nvim
         nvim-treesitter
         nvim-lspconfig
         nvim-cmp
+
+        dashboard-nvim
+        telescope-nvim
 
         catppuccin-nvim
       ];

@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, home-manager, hyprland, aagl, user, location, ... }:
+{ lib, inputs, nixpkgs, nur, home-manager, hyprland, aagl, user, location, ... }:
 
 let
   system = "x86_64-linux";
@@ -18,6 +18,7 @@ in
       inherit inputs user location hyprland aagl;
     };
     modules = [
+      nur.nixosModules.nur
       ./desktop
       ./configuration.nix
 

@@ -4,6 +4,9 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+
+    nur.url = "github:nix-community/NUR";
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +22,7 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, aagl, ... }:
+  outputs = inputs @ { self, nixpkgs, nur, home-manager, hyprland, aagl, ... }:
     let
       user = "raphael";
       location = "$HOME/dotfiles";
@@ -27,7 +30,7 @@
       nixosConfigurations = (
           import ./hosts {
             inherit (nixpkgs) lib;
-            inherit inputs nixpkgs home-manager hyprland aagl user location;
+            inherit inputs nixpkgs nur home-manager hyprland aagl user location;
           }
         );
       };
