@@ -1,14 +1,21 @@
-{ pkgs, ... }:
+{ pkgs, host, ... }:
 
 let
   shellAliases = {
     ls = "ls --color";
     l  = "ls -al";
     ll = "ls -l";
-    rebuild = "doas nixos-rebuild switch --flake ~/dotfiles#desktop";
+    rebuild = "doas nixos-rebuild switch --flake ~/dotfiles#${host.hostName}";
     update = "pushd ~/dotfiles; nix flake update; popd";
     ".." = "cd ..";
   };
+
+  initExtra = with host;
+    if hostName == "desktop" then ''
+      if [ -z "''${DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
+        exec Hyprland
+      fi
+    '' else "";
 in
 {
   programs = {
@@ -30,11 +37,7 @@ in
       dotDir = ".config/zsh";
       enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
-      initExtra = ''
-      if [ -z "''${DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
-        exec Hyprland
-      fi
-      '';
+      inherit initExtra;
     };
 
     bash = {

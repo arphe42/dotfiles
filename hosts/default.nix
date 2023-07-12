@@ -16,6 +16,9 @@ in
     inherit system;
     specialArgs = {
       inherit inputs user location hyprland aagl;
+      host = {
+        hostName = "desktop";
+      };
     };
     modules = [
       nur.nixosModules.nur
@@ -27,6 +30,9 @@ in
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
           inherit user hyprland;
+          host = {
+            hostName = "desktop";
+          };
         };
         home-manager.users.${user} = {
           imports = [
@@ -42,6 +48,9 @@ in
     inherit system;
     specialArgs = {
       inherit inputs user location;
+      host = {
+        hostName = "nas";
+      };
     };
     modules = [
       ./nas
