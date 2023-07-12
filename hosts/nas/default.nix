@@ -8,10 +8,15 @@
     kernelPackages = pkgs.linuxPackages_latest;
 
     loader = {
-      systemd-boot = {
+      grub = {
         enable = true;
-        configurationLimit = 8;
+        device = "/dev/nvme0n1";
+        useOSProber = true;
       };
+      #systemd-boot = {
+      #  enable = true;
+      #  configurationLimit = 8;
+      #};
       #efi = {
       #  canTouchEfiVariables = true;
       #  efiSysMountPoint = "/boot/efi";
