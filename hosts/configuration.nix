@@ -10,7 +10,7 @@
   };
 
   fonts = {
-    fonts = with pkgs; [
+    packages = with pkgs; [
       font-awesome                     # Icons
       corefonts                        # MS
       jetbrains-mono
@@ -22,7 +22,7 @@
       })
     ];
 
-    enableDefaultFonts = true;
+    enableDefaultPackages = true;
     fontconfig = {
       defaultFonts = {
         serif = [ "jetbrains-mono" ];

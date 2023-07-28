@@ -6,6 +6,7 @@
     [(../../modules/displayManager/startx.nix)] ++
     #[(../../modules/displayManager/lightdm.nix)] ++
     [(../../modules/desktop/hyprland)] ++
+    [(../../modules/desktop/awesome)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/programs/an-anime-game-launcher.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];

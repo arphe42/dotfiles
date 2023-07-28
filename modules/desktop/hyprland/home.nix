@@ -12,7 +12,7 @@
       monitor=HDMI-A-1, 1920x1080@120, 0x188, 1
 
       # primary display for xwayland / games
-      exec-once = xrandr --output DP-3 --primary
+      exec-once = xrandr --output DP-3 --mode 3440x1440 --primary
 
       # Screen share
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
