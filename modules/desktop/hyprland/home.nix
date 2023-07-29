@@ -143,6 +143,13 @@
       bind = $modKey + SHIFT, Left, movetoworkspace, m-1
       bind = $modKey + SHIFT, Right, movetoworkspace, m+1
 
+      # MultiMedia
+      bind = , XF86AudioRaiseVolume, exec, pamixer -i 5
+      bind = , XF86AudioLowerVolume, exec, pamixer -d 5
+      bind = , XF86AudioMute,        exec, pamixer -t
+      bind = , XF86AudioNext,        exec, mpc next
+
+
 
       # Window rules
       windowrulev2 = float,class:^(pcmanfm)$,title:^(Removable medium is inserted)$

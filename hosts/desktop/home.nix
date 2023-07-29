@@ -4,6 +4,7 @@
   imports = [
     ../../modules/programs/alacritty.nix
     ../../modules/desktop/hyprland/home.nix
+    ../../modules/programs/mpd.nix
   ];
   home = {
     packages = with pkgs; [
@@ -50,6 +51,7 @@
       cdecrypt
 
       # window manager thing
+      rofi
       feh
 
       lxappearance
@@ -65,7 +67,6 @@
       swaylock-effects
       wlogout
       waybar
-      mpd
       jq
       gamescope
       xdg-desktop-portal-hyprland
@@ -76,6 +77,8 @@
       wlroots
       xdg-utils
       ffmpeg
+      pamixer
+      mpc-cli
       gifski
       xorg.xrandr
       numlockx
