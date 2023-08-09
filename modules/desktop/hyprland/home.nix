@@ -1,9 +1,15 @@
-{ pkgs, hyprland, ... }:
+{ inputs, lib, system, pkgs, hyprland, ... }:
 
 {
   imports = [ hyprland.homeManagerModules.default ];
   wayland.windowManager.hyprland = {
     enable = true;
+    nvidiaPatches = true;
+
+    plugins = [
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      #inputs.unofficial-hyprland-plugins.packages.${pkgs.system}.split-monitor-workspaces
+    ];
 
     extraConfig = ''
       # Monitor setup
@@ -24,35 +30,47 @@
       workspace = DP-3, 2
       workspace = DP-1, 3
 
-      # environment variable
-      env = XDG_CURRENT_DESKTOP,Hyprland
-      env = XDG_SESSION_TYPE,wayland
-      env = XDG_SESSION_DESKTOP,Hyprland
-      env = MOZ_ENABLE_WAYLAND,0
-      env = _JAVA_AWT_WM_NONREPARENTING,1
-      env = XCURSOR_SIZE,24
-      env = QT_AUTO_SCREEN_SCALE_FACTOR,1
-      #env = QT_QPA_PLATFORM,wayland;xcb
-      env = QT_WAYLAND_DISABLE_WINDOWDECORATION,1
-      env = QT_QPA_PLATFORMTHEME,qt5ct
-      env = GBM_BACKEND,nvidia-drm
-      env = LIBVA_DRIVER_NAME,nvidia
-      env = __GL_GSYNC_ALLOWED,0
-      env = __GL_VRR_ALLOWED,0
-      env = WLR_DRM_NO_ATOMIC,1
-      #env = SDL_VIDEODRIVER,wayland
-      #env = CLUTTER_BACKEND,wayland
-      #env = GDK_BACKEND,wayland
-      env = WLR_NO_HARDWARE_CURSORS,1
 
-      env = __NV_PRIME_RENDER_OFFLOAD,1
-      env = __GLX_VENDOR_LIBRARY_NAME,nvidia
-      env = __VK_LAYER_NV_optimus,NVIDIA_only
+      # Environment Variables
+      env = WLR_NO_HARDWARE_CURSORS,             1
+      env = _JAVA_AWT_WM_NONREPARENTING,         1
+      #env = MOZ_ENABLE_WAYLAND,                  1
+
+      ## Toolkit Backend Variables
+      env = GDK_BACKEND,                         wayland,x11
+      env = QT_QPA_PLATFORM,                     wayland;xcb
+      env = SDL_VIDEODRIVER,                     wayland
+      env = CLUTTER_BACKEND,                     wayland
+
+      ## XDG Specifications
+      env = XDG_CURRENT_DESKTOP,                 Hyprland
+      env = XDG_SESSION_TYPE,                    wayland
+      env = XDG_SESSION_DESKTOP,                 Hyprland
+
+      ## QT Variables
+      env = QT_AUTO_SCREEN_SCALE_FACTOR,         1
+      env = QT_QPA_PLATFORM,                     wayland;xcb
+      env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
+      env = QT_QPA_PLATFORMTHEME,                qt5ct
+
+      ## NVIDIA Specific
+      env = GBM_BACKEND,                         nvidia_drm
+      env = __GLX_VENDOR_LIBRARY_NAME,           nvidia
+      env = LIBVA_DRIVER_NAME,                   nvidia
+      env = __GL_GSYNC_ALLOWED,                  0
+      env = __GL_VRR_ALLOWED,                    0
+      env = WLR_DRM_NO_ATOMIC,                   1
+
+      ## Theming Related Variables
+      #env = GTK_THEME,
+      #env = XCURSOR_THEME,
+      env = XCURSOR_SIZE,                        24
 
       general {
         gaps_in = 5
         gaps_out = 10
         border_size = 2
+        #no_border_on_floating = true
         col.active_border = rgba(7287fdee) rgba(e6e9efaa) 45deg
         col.inactive_border = rgba(179299aa)
 
@@ -61,11 +79,14 @@
       }
 
       decoration {
-      rounding = 8
-      blur = yes
-      blur_size = 5
-      blur_passes = 1
-      blur_new_optimizations = on
+        rounding = 8
+
+        blur {
+          enabled = true
+          size = 5
+          passes = 1
+          new_optimizations = true
+        }
       }
 
       input {
@@ -77,6 +98,7 @@
       misc {
         mouse_move_enables_dpms = true
         key_press_enables_dpms = true
+        disable_hyprland_logo = true
       }
 
       dwindle {
@@ -88,6 +110,12 @@
         no_gaps_when_only = true
         new_on_top = true
         inherit_fullscreen = true
+      }
+
+      plugin {
+        hyprbars {
+          bar_height = 20
+        }
       }
 
       # Keybind
@@ -102,10 +130,11 @@
       bind = $modKey, Q, exec, '' + ./. + ''/scripts/minimizeSteam.sh
       bind = $modKey, Escape, exec, wlogout
 
-      bindm = $modKey, mouse:272, movewindow
       bind = $modKey, mouse:272, bringactivetotop
-      bindm = $modKey, mouse:273, resizewindow
+      bindm = $modKey, mouse:272, movewindow
       bind = $modKey, mouse:273, bringactivetotop
+      #bind = $modKey, mouse:273, movecursortocorner, 1
+      bindm = $modKey, mouse:273, resizewindow
 
       bind = $modKey, F, togglefloating
       bind = $modKey_SHIFT, F, fullscreen
@@ -126,8 +155,8 @@
       bind = $modKey, 9, workspace, 9
       bind = $modKey, 0, workspace, 10
 
-      bind = $modKey, Left, workspace, m-1
-      bind = $modKey, Right, workspace, m+1
+      bind = $modKey, Left, workspace, r-1
+      bind = $modKey, Right, workspace, r+1
 
       bind = $modKey + SHIFT, 1, movetoworkspace, 1
       bind = $modKey + SHIFT, 2, movetoworkspace, 2
@@ -140,14 +169,16 @@
       bind = $modKey + SHIFT, 9, movetoworkspace, 9
       bind = $modKey + SHIFT, 0, movetoworkspace, 10
 
-      bind = $modKey + SHIFT, Left, movetoworkspace, m-1
-      bind = $modKey + SHIFT, Right, movetoworkspace, m+1
+      bind = $modKey + SHIFT, Left, movetoworkspace, r-1
+      bind = $modKey + SHIFT, Right, movetoworkspace, r+1
 
       # MultiMedia
       bind = , XF86AudioRaiseVolume, exec, pamixer -i 5
       bind = , XF86AudioLowerVolume, exec, pamixer -d 5
       bind = , XF86AudioMute,        exec, pamixer -t
-      bind = , XF86AudioNext,        exec, mpc next
+      bind = , XF86AudioPlay,        exec, playerctl play-pause
+      bind = , XF86AudioNext,        exec, playerctl next
+      bind = , XF86AudioPrev,        exec, playerctl previous
 
 
 
@@ -155,15 +186,19 @@
       windowrulev2 = float,class:^(pcmanfm)$,title:^(Removable medium is inserted)$
       windowrulev2 = float,title:^(Bluetooth Devices)$
       windowrulev2 = float,title:^(Authentication Required — PolicyKit1 KDE Agent)$
+      #windowrulev2 = idleinhibit fullscreen,title:^(*)$
 
       # autostart
-      exec-once = waybar
+      exec-once = '' + ./. + ''/scripts/waybar.sh
       exec-once = swayidle -w timeout 540 "swaylock" timeout 600 "hyprctl dispatch dpms off"
       exec-once = blueman-applet
       exec-once = nm-applet --indicator
       exec-once = /nix/store/$(ls -la /nix/store | grep 'polkit-kde-agent' | grep '4096' | awk '{print $9}' | sed -n '$p')/libexec/polkit-kde-authentication-agent-1 &
       exec-once = pcmanfm -d      # daemon for pcmanfm
       exec-once = swww init       # wallpaper
+      exec-once = sleep 1;swww img -o DP-3 ~/disk/ssd/wallpapers/3440x1440/yor-forger-flower-field-spy-x-family-moewalls-com.gif
+      exec-once = sleep 1;swww img -o DP-1 ~/disk/ssd/wallpapers/1080x1920/Anime\ field\ at\ dusk
+      exec-once = sleep 1;swww img -o HDMI-A-1 ~/disk/ssd/wallpapers/1920x1080/anime-girl-looking-at-beach-desktop-wallpaperwaifu.com.gif
     '';
   };
 }

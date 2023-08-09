@@ -1,34 +1,31 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 {
-  services.mpd = {
-    enable = true;
+  services = {
+    mpd = {
+      enable = true;
+      musicDirectory = "~/Music";
 
-    extraConfig = ''
-      zeroconf_enabled "no"
+      extraConfig = ''
+        zeroconf_enabled "no"
 
-      filesystem_charset "UTF-8"
+        filesystem_charset "UTF-8"
 
-      restore_paused "yes"
+        restore_paused "yes"
 
-      input_cache {
-        size "1 GB"
-      }
+        input_cache {
+          size "1 GB"
+        }
 
-      audio_output {
-        type "pipewire"
-        name "Primary Audio Stream"
-        format "96000:32:2"
-      }
-    '';
-  };
-  services.mpd-discord-rpc.enable = true;
-  services.listenbrainz-mpd = {
-    enable = true;
-    settings.submission.token_file = nixosConfig.age.secrets."listenbrainz-token".path;
-  };
-
-  programs.ncmpcpp = {
-    enable = true;
+        audio_output {
+          type "pipewire"
+          name "Primary Audio Stream"
+          format "96000:32:2"
+        }
+      '';
+    };
+    mpd-discord-rpc = {
+      enable = true;
+    };
   };
 }

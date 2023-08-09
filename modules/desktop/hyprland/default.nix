@@ -1,4 +1,4 @@
-{ confi, lib, pkgs, host, system, hyprland, ... }:
+{ config, lib, pkgs, host, system, hyprland, ... }:
 
 {
   imports = [../../programs/waybar.nix] ++ 
@@ -6,6 +6,7 @@
 
   programs.hyprland = {
     enable = true;
+    #package = hyprland.packages.${pkgs.system}.hyprland;
     nvidiaPatches = true;
     xwayland = {
       enable = true;

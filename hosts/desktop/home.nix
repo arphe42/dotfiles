@@ -1,10 +1,9 @@
-{ pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
   imports = [
     ../../modules/programs/alacritty.nix
     ../../modules/desktop/hyprland/home.nix
-    ../../modules/programs/mpd.nix
   ];
   home = {
     packages = with pkgs; [
@@ -78,6 +77,7 @@
       xdg-utils
       ffmpeg
       pamixer
+      playerctl
       mpc-cli
       gifski
       xorg.xrandr
