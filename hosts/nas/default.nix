@@ -2,7 +2,8 @@
 
 {
   imports =
-    [(./hardware-configuration.nix)];
+    [(./hardware-configuration.nix)] ++
+    [(./minecraft.nix)];
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;

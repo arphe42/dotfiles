@@ -2,6 +2,8 @@
 
 {
   home = {
-    packages = with pkgs; [];
+    packages = with pkgs; [
+      openjdk17
+    ];
   };
 }
