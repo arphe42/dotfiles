@@ -53,7 +53,9 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = with pkgs; [
+  ];
+
 
   services = {
     blueman.enable = true;
@@ -93,7 +95,7 @@
   '';
 
   # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
+   networking.firewall.allowedTCPPorts = [ 25565 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

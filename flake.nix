@@ -17,11 +17,6 @@
       inputs.hyprland.follows = "hyprland";
     };
 
-    unofficial-hyprland-plugins = {
-      url = "github:arphe42/unofficial-hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";

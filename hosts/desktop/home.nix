@@ -75,6 +75,7 @@
       wlr-randr
       wlroots
       xdg-utils
+      networkmanagerapplet
       ffmpeg
       pamixer
       playerctl
@@ -84,8 +85,9 @@
       numlockx
       xdotool
       libnotify
+      inotify-tools
       lxsession
-      #xscreensaver
+      xscreensaver
       xclip  # to make vim work with system clipboard X11
       wl-clipboard
       clipman

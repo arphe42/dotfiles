@@ -27,6 +27,7 @@
   nixpkgs.config.packageOverrides = pkgs: {
     steam = pkgs.steam.override {
       extraPkgs = pkgs: with pkgs; [
+        gamemode
         gamescope
         mangohud
         xorg.libXcursor

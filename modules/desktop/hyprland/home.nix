@@ -4,12 +4,11 @@
   imports = [ hyprland.homeManagerModules.default ];
   wayland.windowManager.hyprland = {
     enable = true;
-    nvidiaPatches = true;
 
-    plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      #inputs.unofficial-hyprland-plugins.packages.${pkgs.system}.split-monitor-workspaces
-    ];
+    #plugins = [
+    #  inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+    #  inputs.unofficial-hyprland-plugins.packages.${pkgs.system}.split-monitor-workspaces
+    #];
 
     extraConfig = ''
       # Monitor setup
@@ -112,12 +111,6 @@
         inherit_fullscreen = true
       }
 
-      plugin {
-        hyprbars {
-          bar_height = 20
-        }
-      }
-
       # Keybind
       $modKey = SUPER
 
@@ -189,16 +182,18 @@
       #windowrulev2 = idleinhibit fullscreen,title:^(*)$
 
       # autostart
+      exec-once = swww init &    # wallpaper
+      exec-once = sleep 1;swww img -o DP-3 ~/disk/ssd/wallpapers/3440x1440/yor-forger-flower-field-spy-x-family-moewalls-com.gif
+      exec-once = sleep 1;swww img -o DP-1 ~/disk/ssd/wallpapers/1080x1920/Anime\ field\ at\ dusk
+      exec-once = sleep 1;swww img -o HDMI-A-1 ~/disk/ssd/wallpapers/1920x1080/anime-girl-looking-at-beach-desktop-wallpaperwaifu.com.gif
       exec-once = '' + ./. + ''/scripts/waybar.sh
-      exec-once = swayidle -w timeout 540 "swaylock" timeout 600 "hyprctl dispatch dpms off"
+      #exec-once = swayidle -w timeout 540 "swaylock" timeout 600 "hyprctl dispatch dpms off"
+      exec-once = swayidle -w timeout 600 "hyprctl dispatch dpms off"
       exec-once = blueman-applet
       exec-once = nm-applet --indicator
       exec-once = /nix/store/$(ls -la /nix/store | grep 'polkit-kde-agent' | grep '4096' | awk '{print $9}' | sed -n '$p')/libexec/polkit-kde-authentication-agent-1 &
       exec-once = pcmanfm -d      # daemon for pcmanfm
-      exec-once = swww init       # wallpaper
-      exec-once = sleep 1;swww img -o DP-3 ~/disk/ssd/wallpapers/3440x1440/yor-forger-flower-field-spy-x-family-moewalls-com.gif
-      exec-once = sleep 1;swww img -o DP-1 ~/disk/ssd/wallpapers/1080x1920/Anime\ field\ at\ dusk
-      exec-once = sleep 1;swww img -o HDMI-A-1 ~/disk/ssd/wallpapers/1920x1080/anime-girl-looking-at-beach-desktop-wallpaperwaifu.com.gif
+      exec-once = sleep 1;hyprctl dispatch workspace 2
     '';
   };
 }
