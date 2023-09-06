@@ -15,7 +15,7 @@ in
   desktop = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs user location hyprland aagl;
+      inherit inputs user location hyprland aagl ;
       host = {
         hostName = "desktop";
       };

@@ -7,10 +7,10 @@
   programs.hyprland = {
     enable = true;
     #package = hyprland.packages.${pkgs.system}.hyprland;
-    nvidiaPatches = true;
+    enableNvidiaPatches = true;
     xwayland = {
       enable = true;
-      hidpi = true;
+      #hidpi = true;
     };
   };
 

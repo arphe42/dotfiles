@@ -5,9 +5,6 @@
     neovim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [
-        # Syntax
-        vim-nix
-
 	auto-pairs
 	vim-gitgutter
         indentLine
@@ -17,15 +14,25 @@
         nvim-tree-lua
         nerdtree
 
+        #languages
+        lsp-zero-nvim
+        nvim-lspconfig
+        rust-tools-nvim
+        vim-nix
+
+
         barbar-nvim
         gitsigns-nvim
-        nvim-treesitter
+        nvim-treesitter.withAllGrammars
         nvim-lspconfig
         nvim-cmp
 
         dashboard-nvim
         telescope-nvim
 
+        vim-floaterm
+
+        # theme
         catppuccin-nvim
       ];
       extraConfig = ''

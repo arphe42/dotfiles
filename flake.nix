@@ -7,6 +7,12 @@
 
     nur.url = "github:nix-community/NUR";
 
+    sudoku-resolv = {
+      url = "path:/home/raphael/Documents/projets/sudoku_resolver";
+      flake = true;
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";

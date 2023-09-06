@@ -7,6 +7,7 @@
   ];
   home = {
     packages = with pkgs; [
+      inputs.sudoku-resolv.packages.${pkgs.system}.default
       # apps
       brave
       firefox
