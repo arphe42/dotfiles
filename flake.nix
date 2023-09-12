@@ -12,6 +12,9 @@
       flake = true;
       #inputs.nixpkgs.follows = "nixpkgs";
     };
+    myApps = {
+      url = "path:/home/raphael/Documents/projets/nixpkgsExemple";
+    };
 
     hyprland = {
       url = "github:hyprwm/Hyprland";

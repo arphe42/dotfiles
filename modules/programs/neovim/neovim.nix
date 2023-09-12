@@ -5,8 +5,8 @@
     neovim = {
       enable = true;
       plugins = with pkgs.vimPlugins; [
-	auto-pairs
-	vim-gitgutter
+	    auto-pairs
+	    vim-gitgutter
         indentLine
 
         # File Tree
@@ -37,15 +37,10 @@
       ];
       extraConfig = ''
         luafile '' + ./. + ''/settings.lua
+        luafile '' + ./. + ''/remap.lua
         syntax enable
         highlight Comment cterm=italic gui=italic
         hi Normal guibg=NONE ctermbg=NONE
-
-        set number
-        set relativenumber
-        set clipboard=unnamedplus
-
-        nmap <F6> :NvimTreeToggle<CR>
       '';
       
     };

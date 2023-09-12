@@ -13,25 +13,25 @@ require("nvim-tree").setup({
 	on_attach = on_attach,
 })
 
--- OR setup with some options
---require("nvim-tree").setup({
---  sort_by = "case_sensitive",
---  view = {
---    adaptive_size = true,
---    mappings = {
---      list = {
---        { key = "u", action = "dir_up" },
---      },
---    },
---  },
---  renderer = {
---    group_empty = true,
---  },
---  filters = {
---    dotfiles = true,
---  },
---})
+-- Indentation
+opt.smartindent = true
+opt.autoindent = true
+opt.tabstop = 4
+opt.shiftwidth = 4
+opt.expandtab = true
 
+-- system clipboard instead of the vim one
+opt.clipboard = "unnamedplus"
+
+-- Use mouse
+opt.mouse = "a"
+
+-- UI settings
+opt.cursorline = true
+opt.number = true
+opt.relativenumber = true
+
+-- theme catppuccin
 require("catppuccin").setup({
     flavour = "macchiato", -- latte, frappe, macchiato, mocha
     background = { -- :h background

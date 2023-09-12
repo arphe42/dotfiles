@@ -89,7 +89,9 @@
       }
 
       input {
-        kb_layout = us
+        kb_layout = us,ca
+        kb_options = grp:alt_shift_toggle
+
         follow_mouse = true
 
         numlock_by_default = true

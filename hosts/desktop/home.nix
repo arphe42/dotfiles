@@ -5,9 +5,9 @@
     ../../modules/programs/alacritty.nix
     ../../modules/desktop/hyprland/home.nix
   ];
+
   home = {
     packages = with pkgs; [
-      inputs.sudoku-resolv.packages.${pkgs.system}.default
       # apps
       brave
       firefox
