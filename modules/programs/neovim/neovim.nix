@@ -24,7 +24,6 @@
         barbar-nvim
         gitsigns-nvim
         nvim-treesitter.withAllGrammars
-        nvim-lspconfig
         nvim-cmp
 
         dashboard-nvim
@@ -38,7 +37,7 @@
       extraConfig = ''
         luafile '' + ./. + ''/settings.lua
         luafile '' + ./. + ''/remap.lua
-        syntax enable
+        luafile '' + ./. + ''/plugins/treesitter.lua
         highlight Comment cterm=italic gui=italic
         hi Normal guibg=NONE ctermbg=NONE
       '';
