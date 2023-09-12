@@ -31,6 +31,9 @@ opt.cursorline = true
 opt.number = true
 opt.relativenumber = true
 
+vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
+vim.cmd [[highlight Comment cterm=italic gui=italic]]
+
 -- theme catppuccin
 require("catppuccin").setup({
     flavour = "macchiato", -- latte, frappe, macchiato, mocha

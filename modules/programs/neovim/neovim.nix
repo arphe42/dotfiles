@@ -4,44 +4,55 @@
   programs = {
     neovim = {
       enable = true;
-      plugins = with pkgs.vimPlugins; [
-	    auto-pairs
-	    vim-gitgutter
-        indentLine
 
-        # File Tree
-        nvim-web-devicons
-        nvim-tree-lua
-        nerdtree
-
-        #languages
-        lsp-zero-nvim
-        nvim-lspconfig
-        rust-tools-nvim
-        vim-nix
-
-
-        barbar-nvim
-        gitsigns-nvim
-        nvim-treesitter.withAllGrammars
-        nvim-cmp
-
-        dashboard-nvim
-        telescope-nvim
-
-        vim-floaterm
-
-        # theme
-        catppuccin-nvim
-      ];
       extraConfig = ''
         luafile '' + ./. + ''/settings.lua
         luafile '' + ./. + ''/remap.lua
         luafile '' + ./. + ''/plugins/treesitter.lua
-        highlight Comment cterm=italic gui=italic
-        hi Normal guibg=NONE ctermbg=NONE
+
+        lua << EOF
+        vim.defer_fn(function()
+          vim.cmd [[
+            luafile '' + ./. + ''/plugins/lsp.lua
+          ]]
+        )
       '';
-      
+
+      plugins = with pkgs.vimPlugins; [
+        # File Tree
+        nvim-web-devicons
+        nvim-tree-lua
+
+        # LSP
+        nvim-lspconfig
+        nvim-compe
+        lsp-zero-nvim
+        rust-tools-nvim
+
+        # Eyecandy
+        nvim-treesitter.withAllGrammars
+
+
+        barbar-nvim
+        gitsigns-nvim
+        nvim-cmp
+
+        telescope-nvim
+
+        vim-gitgutter
+        vim-floaterm
+
+        vim-nix
+        indentLine
+	    auto-pairs
+
+        # theme
+        catppuccin-nvim
+      ];
     };
   };
+
+  home.packages = with pkgs; [
+    rnix-lsp
+  ];
 }
