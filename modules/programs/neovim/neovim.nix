@@ -10,12 +10,14 @@
         luafile '' + ./. + ''/remap.lua
         luafile '' + ./. + ''/plugins/treesitter.lua
 
-        lua << EOF
-        vim.defer_fn(function()
-          vim.cmd [[
-            luafile '' + ./. + ''/plugins/lsp.lua
-          ]]
-        )
+lua << EOF
+vim.defer_fn(function()
+  vim.cmd [[
+    luafile '' + ./. + ''/plugins/lsp.lua
+    source '' + ./. + ''plugins/floaterm.vim
+  ]]
+end, 70)
+EOF
       '';
 
       plugins = with pkgs.vimPlugins; [
@@ -27,7 +29,11 @@
         nvim-lspconfig
         nvim-compe
         lsp-zero-nvim
-        rust-tools-nvim
+        #mason-nvim
+        mason-lspconfig-nvim
+        nvim-cmp
+        cmp-nvim-lsp
+        #rust-tools-nvim
 
         # Eyecandy
         nvim-treesitter.withAllGrammars
@@ -35,7 +41,6 @@
 
         barbar-nvim
         gitsigns-nvim
-        nvim-cmp
 
         telescope-nvim
 
