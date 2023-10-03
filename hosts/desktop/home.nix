@@ -37,9 +37,10 @@
       wine-staging
       winetricks
       protontricks
+      protonup-qt
 
       # Emulations
-      emulationstation
+      #emulationstation
       retroarchFull
       cemu
       #yuzu-mainline
@@ -61,6 +62,7 @@
       wofi
       grim
       slurp
+      flameshot
       swww
       mpvpaper
       swayidle
@@ -85,6 +87,7 @@
       xorg.xrandr
       numlockx
       xdotool
+      ydotool
       libnotify
       inotify-tools
       lxsession
@@ -124,6 +127,10 @@
     };
     cursorTheme = {
       name = "Adwaita";
+    };
+    font = {
+      name = "Noto Sans";
+      size = 10;
     };
   };
 

@@ -5,12 +5,12 @@
     [(./hardware-configuration.nix)] ++
     [(../../modules/displayManager/startx.nix)] ++
     #[(../../modules/displayManager/lightdm.nix)] ++
+    [(../../modules/desktop/plasma.nix)] ++
     [(../../modules/desktop/hyprland)] ++
     [(../../modules/desktop/awesome)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/programs/an-anime-game-launcher.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
-
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;    # Use the latest kernel
@@ -32,6 +32,16 @@
     ];
 
     supportedFilesystems = [ "ntfs" "exfat" ];
+    kernelModules = [ "i2c-dev" "i2c-piix4" ];
+  };
+
+  boot.binfmt.registrations.appimage = {
+    wrapInterpreterInShell = false;
+    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    recognitionType = "magic";
+    offset = 0;
+    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+    magicOrExtension = ''\x7fELF....AI\x02'';
   };
 
   
@@ -62,6 +72,12 @@
 
     samba = {
       enable = true;
+    };
+
+    hardware.openrgb = {
+      enable = true;
+      motherboard = "amd";
+      server.port = 6742;
     };
   };
 

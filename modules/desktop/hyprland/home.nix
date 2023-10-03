@@ -185,9 +185,9 @@
 
       # autostart
       exec-once = swww init &    # wallpaper
-      exec-once = sleep 1;swww img -o DP-3 ~/disk/ssd/wallpapers/3440x1440/yor-forger-flower-field-spy-x-family-moewalls-com.gif
-      exec-once = sleep 1;swww img -o DP-1 ~/disk/ssd/wallpapers/1080x1920/Anime\ field\ at\ dusk
-      exec-once = sleep 1;swww img -o HDMI-A-1 ~/disk/ssd/wallpapers/1920x1080/anime-girl-looking-at-beach-desktop-wallpaperwaifu.com.gif
+      exec-once = sleep 1;swww img -o DP-3 ~/disk/ssd/wallpapers/3440x1440/2b-city-ruins-nier-automata-moewalls-com.gif
+      exec-once = sleep 1;swww img -o DP-1 ~/disk/ssd/wallpapers/1080x1920/MOBILE-Spirited-Away.gif
+      exec-once = sleep 1;swww img -o HDMI-A-1 ~/disk/ssd/wallpapers/1920x1080/spike-spiegel-smoking-in-the-rain-cowboy-bebop-moewalls-com.gif
       exec-once = '' + ./. + ''/scripts/waybar.sh
       #exec-once = swayidle -w timeout 540 "swaylock" timeout 600 "hyprctl dispatch dpms off"
       exec-once = swayidle -w timeout 600 "hyprctl dispatch dpms off"

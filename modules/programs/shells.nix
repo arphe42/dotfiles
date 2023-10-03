@@ -10,12 +10,12 @@ let
     ".." = "cd ..";
   };
 
-  initExtra = with host;
-    if hostName == "desktop" then ''
-      if [ -z "''${DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
-        exec Hyprland
-      fi
-    '' else "";
+  #initExtra = with host;
+  #  if hostName == "desktop" then ''
+  #    if [ -z "''${DISPLAY}" ] && [ "''${XDG_VTNR}" -eq 1 ]; then
+  #      exec Hyprland
+  #    fi
+  #  '' else "";
 in
 {
   programs = {
@@ -37,7 +37,7 @@ in
       dotDir = ".config/zsh";
       enableAutosuggestions = true;
       syntaxHighlighting.enable = true;
-      inherit initExtra;
+      #inherit initExtra;
     };
 
     bash = {

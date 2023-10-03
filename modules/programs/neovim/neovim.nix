@@ -9,12 +9,12 @@
         luafile '' + ./. + ''/settings.lua
         luafile '' + ./. + ''/remap.lua
         luafile '' + ./. + ''/plugins/treesitter.lua
+        source '' + ./. + ''/plugins/floaterm.vim
 
 lua << EOF
 vim.defer_fn(function()
   vim.cmd [[
     luafile '' + ./. + ''/plugins/lsp.lua
-    source '' + ./. + ''plugins/floaterm.vim
   ]]
 end, 70)
 EOF
@@ -28,12 +28,9 @@ EOF
         # LSP
         nvim-lspconfig
         nvim-compe
-        lsp-zero-nvim
-        #mason-nvim
-        mason-lspconfig-nvim
-        nvim-cmp
-        cmp-nvim-lsp
-        #rust-tools-nvim
+        #nvim-cmp
+        #cmp-nvim-lsp
+        rust-tools-nvim
 
         # Eyecandy
         nvim-treesitter.withAllGrammars
@@ -59,5 +56,7 @@ EOF
 
   home.packages = with pkgs; [
     rnix-lsp
+    lua-language-server
+    rust-analyzer
   ];
 }
