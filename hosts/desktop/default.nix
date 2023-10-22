@@ -32,7 +32,7 @@
     ];
 
     supportedFilesystems = [ "ntfs" "exfat" ];
-    kernelModules = [ "i2c-dev" "i2c-piix4" ];
+    kernelModules = [ "i2c-dev" "i2c-piix4" "uinput" ];
   };
 
   boot.binfmt.registrations.appimage = {
@@ -64,11 +64,13 @@
   services.printing.enable = true;
 
   environment.systemPackages = with pkgs; [
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
   ];
 
 
   services = {
-    blueman.enable = true;
+    # blueman.enable = true;     # bluetooth applet
 
     samba = {
       enable = true;
@@ -96,8 +98,12 @@
       openFirewall = true;
       users = [ "raphael" ];
     };
-    nm-applet.enable = true;
+    # nm-applet.enable = true;
   };
+
+  services.udev.extraRules = ''
+    KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput", GROUP="input", MODE="0660"
+  '';
 
   # needed for swaylock to have password
   security.pam.services.swaylock.text = ''

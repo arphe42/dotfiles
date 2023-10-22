@@ -31,13 +31,15 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    spicetify-nix.url = "github:the-argus/spicetify-nix";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nur, home-manager, hyprland, aagl, ... }:
+  outputs = inputs @ { self, nixpkgs, nur, home-manager, hyprland, aagl, spicetify-nix, ... }:
     let
       user = "raphael";
       location = "$HOME/dotfiles";

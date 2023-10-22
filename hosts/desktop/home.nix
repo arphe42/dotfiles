@@ -4,6 +4,7 @@
   imports = [
     ../../modules/programs/alacritty.nix
     ../../modules/desktop/hyprland/home.nix
+    ../../modules/programs/spicetify.nix
   ];
 
   home = {

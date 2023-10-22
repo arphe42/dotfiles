@@ -13,7 +13,7 @@
     extraConfig = ''
       # Monitor setup
       monitor=DP-3, 3440x1440@144, 1920x188, 1
-      monitor=DP-1, 1920x1080@144, 5360x0, 1, transform, 3
+      monitor=DP-2, 1920x1080@144, 5360x0, 1, transform, 3
       monitor=HDMI-A-1, 1920x1080@120, 0x188, 1
 
       # primary display for xwayland / games
@@ -27,7 +27,7 @@
       # Default workspace
       workspace = HDMI-A-1, 1
       workspace = DP-3, 2
-      workspace = DP-1, 3
+      workspace = DP-2, 3
 
 
       # Environment Variables
@@ -186,7 +186,7 @@
       # autostart
       exec-once = swww init &    # wallpaper
       exec-once = sleep 1;swww img -o DP-3 ~/disk/ssd/wallpapers/3440x1440/2b-city-ruins-nier-automata-moewalls-com.gif
-      exec-once = sleep 1;swww img -o DP-1 ~/disk/ssd/wallpapers/1080x1920/MOBILE-Spirited-Away.gif
+      exec-once = sleep 1;swww img -o DP-2 ~/disk/ssd/wallpapers/1080x1920/MOBILE-Spirited-Away.gif
       exec-once = sleep 1;swww img -o HDMI-A-1 ~/disk/ssd/wallpapers/1920x1080/spike-spiegel-smoking-in-the-rain-cowboy-bebop-moewalls-com.gif
       exec-once = '' + ./. + ''/scripts/waybar.sh
       #exec-once = swayidle -w timeout 540 "swaylock" timeout 600 "hyprctl dispatch dpms off"

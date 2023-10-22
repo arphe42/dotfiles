@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, nur, home-manager, hyprland, aagl, user, location, ... }:
+{ lib, inputs, nixpkgs, nur, home-manager, hyprland, aagl, spicetify-nix, user, location, ... }:
 
 let
   system = "x86_64-linux";
@@ -29,7 +29,7 @@ in
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
         home-manager.extraSpecialArgs = {
-          inherit inputs user hyprland;
+          inherit inputs user hyprland spicetify-nix;
           host = {
             hostName = "desktop";
           };
