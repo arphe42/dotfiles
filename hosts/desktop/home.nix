@@ -13,8 +13,8 @@
       brave
       firefox
       onlyoffice-bin
-      spotify
-      spicetify-cli
+      #spotify
+      #spicetify-cli
       discord  betterdiscordctl
       pcmanfm
       krita
@@ -25,9 +25,13 @@
       godot_4
       mpv
       ventoy-full
+      remmina
+      bitwarden
+      moonlight-qt
 
       # games
       xivlauncher
+      clonehero
       prismlauncher
       heroic
       lutris
@@ -41,16 +45,17 @@
       protonup-qt
 
       # Emulations
-      #emulationstation
+      emulationstation
       retroarchFull
-      cemu
-      #yuzu-mainline
-      yuzu-early-access
-      ryujinx
-      citra-nightly
-      dolphin-emu
+      cemu              # WiiU
+      yuzu-early-access # switch
+      ryujinx           # switch
+      citra-nightly     # 3ds
+      melonDS           # nds
+      dolphin-emu       # Gamecube and wii
+      pcsx2             # ps2
 
-      cdecrypt
+      cdecrypt  # decrypt WiiU games
 
       # window manager thing
       rofi
@@ -75,6 +80,7 @@
       xdg-desktop-portal-hyprland
       
       # system
+      i2c-tools
       qt5.qtwayland  qt6.qtwayland
       wlr-randr
       wlroots
@@ -113,27 +119,27 @@
     ];
   };
 
-  qt.enable = true;
-  qt.style.name = "adwaita-dark";
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Adwaita-dark";
-      #package = pkgs.catppuccin-gtk.override {
-      #  accents = [ "red" ];
-      #  size = "standard";
-      #  tweaks = [ "rimless" "black" ];
-      #  variant = "macchiato";
-      #};
-    };
-    cursorTheme = {
-      name = "Adwaita";
-    };
-    font = {
-      name = "Noto Sans";
-      size = 10;
-    };
-  };
+ #  qt.enable = true;
+ #  qt.style.name = "adwaita-dark";
+ #  gtk = {
+ #    enable = true;
+ #    theme = {
+ #      name = "Adwaita-dark";
+ #      #package = pkgs.catppuccin-gtk.override {
+ #      #  accents = [ "red" ];
+ #      #  size = "standard";
+ #      #  tweaks = [ "rimless" "black" ];
+ #      #  variant = "macchiato";
+ #      #};
+ #    };
+ #    cursorTheme = {
+ #      name = "Adwaita";
+ #    };
+ #    font = {
+ #      name = "Noto Sans";
+ #      size = 10;
+ #    };
+ #  };
 
   # Bluetooth headset buttons
   systemd.user.services.mpris-proxy = {

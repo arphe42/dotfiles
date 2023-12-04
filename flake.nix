@@ -47,7 +47,7 @@
       nixosConfigurations = (
           import ./hosts {
             inherit (nixpkgs) lib;
-            inherit inputs nixpkgs nur home-manager hyprland aagl user location;
+            inherit inputs nixpkgs nur home-manager hyprland aagl user location spicetify-nix;
           }
         );
       };

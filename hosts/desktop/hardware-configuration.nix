@@ -33,16 +33,20 @@
       fsType = "ext4";
     };
 
-  # 1TB HDD
-  fileSystems."/home/raphael/disk/hdd" =
-    { device = "/dev/disk/by-uuid/f586fc22-4a03-4cea-be63-d18f7e737daf";
-      fsType = "ext4";
-    };
-
   # 1TB SSD primary game
   fileSystems."/home/raphael/disk/game" =
     { device = "/dev/disk/by-uuid/2ff7f83c-0127-442d-88f5-13fa65911e8f";
       fsType = "ext4";
+    };
+
+    fileSystems."/home/raphael/Storage/Truenas" = {
+      device = "truenas:/mnt/SplishSplash/raphael";
+      fsType = "nfs";
+    };
+
+    fileSystems."/home/raphael/Storage/Emulation" = {
+      device = "truenas:/mnt/SplishSplash/Emulation";
+      fsType = "nfs";
     };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
