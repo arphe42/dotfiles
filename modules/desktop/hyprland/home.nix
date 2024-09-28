@@ -12,12 +12,12 @@
 
     extraConfig = ''
       # Monitor setup
-      monitor=DP-3, 3440x1440@144, 1920x188, 1
-      monitor=DP-2, 1920x1080@144, 5360x0, 1, transform, 3
-      monitor=HDMI-A-1, 1920x1080@120, 0x188, 1
+      monitor=DP-1, 3440x1440@144, 200x1080, 1
+      monitor=DP-3, 1920x1080@144, 1920x0, 1
+      monitor=HDMI-A-1, 1920x1080@120, 0x0, 1
 
       # primary display for xwayland / games
-      exec-once = xrandr --output DP-3 --mode 3440x1440 --primary
+      exec-once = xrandr --output DP-1 --mode 3440x1440 --primary
 
       # Screen share
       exec-once=dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -25,9 +25,9 @@
       #exec-once=hash dbus-update-activation-environment 2>/dev/null && dbus-update-activation-environment --systemd DISPLAY WAYLAND_ DISPLAY SWAYSOCK
 
       # Default workspace
-      workspace = HDMI-A-1, 1
-      workspace = DP-3, 2
-      workspace = DP-2, 3
+      workspace = DP-1, 1
+      workspace = HDMI-A-1, 2
+      workspace = DP-3, 3
 
 
       # Environment Variables
@@ -70,7 +70,7 @@
         gaps_out = 10
         border_size = 2
         #no_border_on_floating = true
-        col.active_border = rgba(7287fdee) rgba(e6e9efaa) 45deg
+      col.active_border = rgba(7287fdee) rgba(e6e9efaa) 45deg
         col.inactive_border = rgba(179299aa)
 
         layout = dwindle
@@ -184,18 +184,18 @@
       #windowrulev2 = idleinhibit fullscreen,title:^(*)$
 
       # autostart
-      exec-once = swww init &    # wallpaper
-      exec-once = sleep 1;swww img -o DP-3 ~/disk/ssd/wallpapers/3440x1440/2b-city-ruins-nier-automata-moewalls-com.gif
-      exec-once = sleep 1;swww img -o DP-2 ~/disk/ssd/wallpapers/1080x1920/MOBILE-Spirited-Away.gif
-      exec-once = sleep 1;swww img -o HDMI-A-1 ~/disk/ssd/wallpapers/1920x1080/spike-spiegel-smoking-in-the-rain-cowboy-bebop-moewalls-com.gif
+      #exec-once = swww init &    # wallpaper
+      #exec-once = sleep 1;swww img -o DP-3 ~/disk/ssd/wallpapers/3440x1440/2b-city-ruins-nier-automata-moewalls-com.gif
+      #exec-once = sleep 1;swww img -o DP-2 ~/disk/ssd/wallpapers/1080x1920/MOBILE-Spirited-Away.gif
+      #exec-once = sleep 1;swww img -o HDMI-A-1 ~/disk/ssd/wallpapers/1920x1080/spike-spiegel-smoking-in-the-rain-cowboy-bebop-moewalls-com.gif
       exec-once = '' + ./. + ''/scripts/waybar.sh
       #exec-once = swayidle -w timeout 540 "swaylock" timeout 600 "hyprctl dispatch dpms off"
-      exec-once = swayidle -w timeout 600 "hyprctl dispatch dpms off"
-      exec-once = blueman-applet
-      exec-once = nm-applet --indicator
-      exec-once = /nix/store/$(ls -la /nix/store | grep 'polkit-kde-agent' | grep '4096' | awk '{print $9}' | sed -n '$p')/libexec/polkit-kde-authentication-agent-1 &
-      exec-once = pcmanfm -d      # daemon for pcmanfm
-      exec-once = sleep 1;hyprctl dispatch workspace 2
+      #exec-once = swayidle -w timeout 600 "hyprctl dispatch dpms off"
+      #exec-once = blueman-applet
+      #exec-once = nm-applet --indicator
+      #exec-once = /nix/store/$(ls -la /nix/store | grep 'polkit-kde-agent' | grep '4096' | awk '{print $9}' | sed -n '$p')/libexec/polkit-kde-authentication-agent-1 &
+      #exec-once = pcmanfm -d      # daemon for pcmanfm
+      #exec-once = sleep 1;hyprctl dispatch workspace 2
     '';
   };
 }

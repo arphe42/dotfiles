@@ -16,8 +16,8 @@ require("nvim-tree").setup({
 -- Indentation
 opt.smartindent = true
 opt.autoindent = true
-opt.tabstop = 4
-opt.shiftwidth = 4
+opt.tabstop = 2
+opt.shiftwidth = 2
 opt.expandtab = true
 
 -- system clipboard instead of the vim one
@@ -34,6 +34,7 @@ opt.relativenumber = true
 vim.cmd [[hi Normal guibg=NONE ctermbg=NONE]]
 vim.cmd [[highlight Comment cterm=italic gui=italic]]
 
+--[[
 -- theme catppuccin
 require("catppuccin").setup({
     flavour = "macchiato", -- latte, frappe, macchiato, mocha
@@ -78,6 +79,7 @@ require("catppuccin").setup({
         -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
     },
 })
+--]]
 
 -- setup must be called before loading
-vim.cmd.colorscheme "catppuccin"
+-- vim.cmd.colorscheme "catppuccin"

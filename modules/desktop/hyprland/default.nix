@@ -6,12 +6,11 @@
 
   programs.hyprland = {
     enable = true;
-    #package = hyprland.packages.${pkgs.system}.hyprland;
-    #enableNvidiaPatches = true;
-    xwayland = {
-      enable = true;
-      #hidpi = true;
-    };
+    package = hyprland.packages.${pkgs.system}.hyprland;
+    #xwayland = {
+    #  enable = true;
+    #  #hidpi = true;
+    #};
   };
 
   nixpkgs.overlays = [

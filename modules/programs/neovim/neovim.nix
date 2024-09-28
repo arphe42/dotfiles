@@ -47,15 +47,12 @@ EOF
         vim-nix
         indentLine
 	    auto-pairs
-
-        # theme
-        catppuccin-nvim
       ];
     };
   };
 
   home.packages = with pkgs; [
-    rnix-lsp
+    #rnix-lsp
     lua-language-server
     rust-analyzer
   ];

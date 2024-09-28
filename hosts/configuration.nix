@@ -5,7 +5,7 @@
   i18n.defaultLocale = "en_CA.utf8";
 
   console = {
-    font = "Hack Nerd Font";
+    font = "Hack Nerd";
     keyMap = "us";
   };
 
@@ -34,15 +34,16 @@
 
   services = {
     xserver = {
-      layout = "us";
-      xkbVariant = "";
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
+    };
 
-      libinput = {
-        enable = true;
-
-        mouse = {
-          middleEmulation = false;
-        };
+    libinput = {
+      enable = true;
+      mouse = {
+        middleEmulation = false;
       };
     };
 
@@ -87,6 +88,7 @@
     enable = true;
     extraRules = [{
       groups = [ "wheel" ];
+      persist = true;
       keepEnv = true;
     }];
   };
@@ -95,7 +97,7 @@
   users.users.${user} = {
     isNormalUser = true;
     description = "Raphael Drouin";
-    extraGroups = [ "wheel" "video" "audio" "networkmanager" "flatpak" ];
+    extraGroups = [ "wheel" "video" "audio" "networkmanager" "flatpak" "uucp" "dialout" ];
     shell = pkgs.zsh;                                     # Default shell
   };
 
@@ -137,6 +139,6 @@
   };
   
   system = {
-    stateVersion = "22.11";
+    stateVersion = "23.11";
   };
 }

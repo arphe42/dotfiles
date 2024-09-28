@@ -1,4 +1,4 @@
-{ lib, inputs, nixpkgs, nur, home-manager, hyprland, aagl, spicetify-nix, user, location, ... }:
+{ lib, inputs, nixpkgs, home-manager, hyprland, aagl, spicetify-nix, user, location, ... }:
 
 let
   system = "x86_64-linux";
@@ -21,7 +21,6 @@ in
       };
     };
     modules = [
-      nur.nixosModules.nur
       ./desktop
       ./configuration.nix
 

@@ -8,45 +8,64 @@
     [ (modulesPath + "/installer/scan/not-detected.nix")
     ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
+  # System disk
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/3029e21c-7339-4407-8ae8-47273f201e3b";
+    { device = "/dev/disk/by-uuid/334450ee-3716-4ee1-a108-83775b6a2153";
       fsType = "ext4";
     };
 
-  fileSystems."/boot/efi" =
-    { device = "/dev/disk/by-uuid/1286-06CD";
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/A675-BB83";
       fsType = "vfat";
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/be5c6c4d-8fc8-486b-be57-bc3a80a375be"; }
+    [ { device = "/dev/disk/by-uuid/da70ac3b-9578-46a4-ac6c-7ef705db00e9"; }
     ];
 
-  # the 500GB SSD
-  fileSystems."/home/raphael/disk/ssd" =
-    { device = "/dev/disk/by-uuid/a9d66443-9e6b-4c98-b48f-2a11fd523aac";
-      fsType = "ext4";
+  # Truenas
+  fileSystems."/home/raphael/Storage/Truenas" =
+    { device = "truenas:/mnt/SplishSplash/raphael";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
     };
 
-  # 1TB SSD primary game
-  fileSystems."/home/raphael/disk/game" =
+  # fileSystems."/home/raphael/Storage/Truenas" = 
+  #   { device = "//truenas/raphael";
+  #     fsType = "cifs";
+  #     options = let
+  #       # this line prevents hanging on network split
+  #       automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+  #     in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
+  #   };
+
+
+  fileSystems."/home/raphael/Storage/Emulation" =
+    { device = "truenas:/mnt/SplishSplash/Emulation";
+      fsType = "nfs";
+      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+    };
+
+  fileSystems."/home/raphael/Storage/Media" = 
+    { device = "//truenas/Media";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+      in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
+    };
+
+  # Game 1Tb ssd nvme
+  fileSystems."/home/raphael/Storage/Game" =
     { device = "/dev/disk/by-uuid/2ff7f83c-0127-442d-88f5-13fa65911e8f";
       fsType = "ext4";
-    };
-
-    fileSystems."/home/raphael/Storage/Truenas" = {
-      device = "truenas:/mnt/SplishSplash/raphael";
-      fsType = "nfs";
-    };
-
-    fileSystems."/home/raphael/Storage/Emulation" = {
-      device = "truenas:/mnt/SplishSplash/Emulation";
-      fsType = "nfs";
     };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking

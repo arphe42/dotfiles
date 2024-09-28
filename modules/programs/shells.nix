@@ -35,7 +35,7 @@ in
       enable = true;
       inherit shellAliases;
       dotDir = ".config/zsh";
-      enableAutosuggestions = true;
+      autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
       #inherit initExtra;
     };

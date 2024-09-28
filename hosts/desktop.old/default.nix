@@ -4,8 +4,12 @@
   imports =
     [(./hardware-configuration.nix)] ++
     [(../../modules/displayManager/startx.nix)] ++
-    [(../../modules/desktop/plasma6)] ++
+    #[(../../modules/displayManager/lightdm.nix)] ++
+    [(../../modules/desktop/plasma.nix)] ++
+    [(../../modules/desktop/hyprland)] ++
+    [(../../modules/desktop/awesome)] ++
     [(../../modules/programs/steam.nix)] ++
+    [(../../modules/programs/an-anime-game-launcher.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
 
   boot = {
@@ -18,12 +22,13 @@
       };
       efi = {
         canTouchEfiVariables = true;
-        #efiSysMountPoint = "/boot/efi";
+        efiSysMountPoint = "/boot/efi";
       };
       timeout = 2;
     };
     kernelParams = [
       "splash"
+      "nvidia-drm.modeset=1"
     ];
 
     supportedFilesystems = [ "ntfs" "exfat" ];
@@ -47,24 +52,20 @@
 
   hardware.pulseaudio.enable = false;
 
-  hardware.graphics = {
+  # Nvidia Driver 
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.opengl = {
     enable = true;
-    enable32Bit = true;
+    driSupport32Bit = true;
   };
+  #hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.stable;
 
   # Enable CUPS to print documents.
-  services.printing = {
-    enable = true;
-    drivers = [ pkgs.hplipWithPlugin ];
-  };
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
+  services.printing.enable = true;
 
   environment.systemPackages = with pkgs; [
-    kdePackages.kcmutils
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
   ];
 
 
@@ -80,16 +81,6 @@
       motherboard = "amd";
       server.port = 6742;
     };
-
-    ratbagd = {
-      enable = true;
-    };
-
-    asusd = {
-      enable = true;
-    };
-
-    esphome.enable = true;
   };
 
   security.polkit.enable = true;
@@ -107,24 +98,11 @@
       openFirewall = true;
       users = [ "raphael" ];
     };
-
-    alvr = {
-      enable = true;
-      openFirewall = true;
-    };
-
-    rog-control-center = {
-      enable = true;
-    };
-
-    dconf.enable = true;
     # nm-applet.enable = true;
   };
 
   services.udev.extraRules = ''
     KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput", GROUP="input", MODE="0660"
-    ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="000c", MODE="664", GROUP="uucp"
-    ATTRS{idVendor}=="2e8a", ATTRS{idProduct}=="0003", MODE="664", GROUP="uucp"
   '';
 
   # needed for swaylock to have password
@@ -138,34 +116,10 @@
     DefaultEnvironment="PATH=/run/current-system/sw/bin"
   '';
 
-  environment = {
-    variables = {
-      LD_LIBRARY_PATH = "/lib";
-      AMD_VULKAN_ICD = "RADV";
-    };
-    sessionVariables = {
-      PATH = [
-        "~/.cargo/bin"
-      ];
-    };
-  };
-
   # Open ports in the firewall.
-  networking.firewall = {
-    allowedTCPPorts = [
-      # Sunshine
-      47984
-      47989
-      47990
-      48010
-    ];
-    allowedUDPPortRanges = [
-      { # Sunshine
-        from = 47998;
-        to = 48000;
-      }
-    ];
-  };
+  networking.firewall.allowedTCPPorts = [
+    8080
+  ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;

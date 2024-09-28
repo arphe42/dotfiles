@@ -23,17 +23,23 @@
 
     sessionVariables = {
       EDITOR = "nvim";
-      BROWSER = "brave";
+      BROWSER = "firefox";
       TERMINAL = "alacritty";
     };
 
-    stateVersion = "22.11";
+    stateVersion = "23.11";
   };
 
   programs = {
     home-manager.enable = true;
 
     bat.enable = true;
+
+    git = {
+      enable = true;
+      userName = "raphael";
+      userEmail = "arphe42@gmail.com";
+    };
 
     tmux = {
       enable = true;

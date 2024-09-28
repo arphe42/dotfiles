@@ -5,17 +5,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixpkgs-unstable";
 
-    nur.url = "github:nix-community/NUR";
-
-    sudoku-resolv = {
-      url = "path:/home/raphael/Documents/projets/sudoku_resolver";
-      flake = true;
-      #inputs.nixpkgs.follows = "nixpkgs";
-    };
-    myApps = {
-      url = "path:/home/raphael/Documents/projets/nixpkgsExemple";
-    };
-
     hyprland = {
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,7 +20,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    spicetify-nix.url = "github:the-argus/spicetify-nix";
+    spicetify-nix = {
+      url = "github:Gerg-L/spicetify-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -39,7 +31,7 @@
     };
   };
 
-  outputs = inputs @ { self, nixpkgs, nur, home-manager, hyprland, aagl, spicetify-nix, ... }:
+  outputs = inputs @ { self, nixpkgs, home-manager, hyprland, aagl, spicetify-nix, ... }:
     let
       user = "raphael";
       location = "$HOME/dotfiles";
@@ -47,7 +39,7 @@
       nixosConfigurations = (
           import ./hosts {
             inherit (nixpkgs) lib;
-            inherit inputs nixpkgs nur home-manager hyprland aagl user location spicetify-nix;
+            inherit inputs nixpkgs home-manager hyprland aagl user location spicetify-nix;
           }
         );
       };
