@@ -27,8 +27,7 @@ EOF
 
         # LSP
         nvim-lspconfig
-        nvim-compe
-        #nvim-cmp
+        nvim-cmp
         #cmp-nvim-lsp
         rust-tools-nvim
 

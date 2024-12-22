@@ -30,6 +30,10 @@
       openrgb-with-all-plugins
       piper
       sunshine
+      gifski
+      jq
+      gparted
+      deskflow
 
       # Games
       protontricks
@@ -75,7 +79,7 @@
       pciutils
       wine
 
-      swww
+      #swww
       mpvpaper
       wlogout
       wofi

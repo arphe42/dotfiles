@@ -158,6 +158,9 @@
       47989
       47990
       48010
+
+      #deskflow
+      24800
     ];
     allowedUDPPortRanges = [
       { # Sunshine

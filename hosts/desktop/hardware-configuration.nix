@@ -62,11 +62,16 @@
       in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
     };
 
-  # Game 1Tb ssd nvme
+  # Game 2Tb ssd nvme
   fileSystems."/home/raphael/Storage/Game" =
-    { device = "/dev/disk/by-uuid/2ff7f83c-0127-442d-88f5-13fa65911e8f";
+    { device = "/dev/disk/by-uuid/573a472b-7ce7-4567-b4a6-66ab64d645c3";
       fsType = "ext4";
     };
+  # Game 1Tb ssd nvme
+  #fileSystems."/home/raphael/Storage/Game" =
+  #  { device = "/dev/disk/by-uuid/2ff7f83c-0127-442d-88f5-13fa65911e8f";
+  #    fsType = "ext4";
+  #  };
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
