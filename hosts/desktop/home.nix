@@ -34,6 +34,7 @@
       jq
       gparted
       deskflow
+      vscode
 
       # Games
       protontricks
