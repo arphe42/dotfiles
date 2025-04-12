@@ -16,6 +16,7 @@ let
   #      exec Hyprland
   #    fi
   #  '' else "";
+  initExtra = "nitch";
 in
 {
   programs = {
@@ -37,7 +38,7 @@ in
       dotDir = ".config/zsh";
       autosuggestion.enable = true;
       syntaxHighlighting.enable = true;
-      #inherit initExtra;
+      inherit initExtra;
     };
 
     bash = {

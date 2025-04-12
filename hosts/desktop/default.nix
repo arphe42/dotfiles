@@ -5,6 +5,7 @@
     [(./hardware-configuration.nix)] ++
     [(../../modules/displayManager/startx.nix)] ++
     [(../../modules/desktop/plasma6)] ++
+    #[(../../modules/desktop/hyprland)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
 
@@ -89,6 +90,13 @@
       enable = true;
     };
 
+    resolved = {
+      enable = true;
+      domains = [
+        "local"
+      ];
+    };
+
     esphome.enable = true;
   };
 
@@ -102,6 +110,7 @@
   services.transmission.user = "raphael";
 
   programs = {
+    firefox.enable = true;
     weylus = {
       enable = true;
       openFirewall = true;
@@ -161,8 +170,30 @@
 
       #deskflow
       24800
+
+      # Minecraft
+      25565 # Game
+      4123  # LiveKit
+      8100  # BlueMap
+    ];
+    allowedTCPPortRanges = [
+      { # KDE Connect
+        from = 1714;
+        to = 1764;
+      }
+    ];
+    allowedUDPPorts = [
+      4010
+      # Minecraft
+      25565 # Game
+      4123  # LiveKit
+      8100  # BlueMap
     ];
     allowedUDPPortRanges = [
+      { # KDE Connect
+        from = 1714;
+        to = 1764;
+      }
       { # Sunshine
         from = 47998;
         to = 48000;

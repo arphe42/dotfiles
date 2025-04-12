@@ -29,31 +29,41 @@
     ];
 
   # Truenas
-  fileSystems."/home/raphael/Storage/Truenas" =
-    { device = "truenas:/mnt/SplishSplash/raphael";
-      fsType = "nfs";
-      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
-    };
-
-  # fileSystems."/home/raphael/Storage/Truenas" = 
-  #   { device = "//truenas/raphael";
-  #     fsType = "cifs";
-  #     options = let
-  #       # this line prevents hanging on network split
-  #       automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-
-  #     in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
+  # fileSystems."/home/raphael/Storage/Truenas" =
+  #   { device = "truenas.local:/mnt/SplishSplash/raphael";
+  #     fsType = "nfs";
+  #     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
   #   };
 
+  fileSystems."/home/raphael/Storage/Truenas" = 
+    { device = "//truenas.local/raphael";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+      in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
+    };
+
+
+  # fileSystems."/home/raphael/Storage/Emulation" =
+  #   { device = "truenas:/mnt/SplishSplash/Emulation";
+  #     fsType = "nfs";
+  #     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+  #   };
 
   fileSystems."/home/raphael/Storage/Emulation" =
-    { device = "truenas:/mnt/SplishSplash/Emulation";
-      fsType = "nfs";
-      options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
+    { device = "//truenas.local/Emulation";
+      fsType = "cifs";
+      options = let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+
+      in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
     };
 
   fileSystems."/home/raphael/Storage/Media" = 
-    { device = "//truenas/Media";
+    { device = "//truenas.local/Media";
       fsType = "cifs";
       options = let
         # this line prevents hanging on network split

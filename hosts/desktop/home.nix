@@ -24,7 +24,6 @@
       qbittorrent
       obs-studio
       qpwgraph # pipewire config gui
-      asusctl
       remmina
       moonlight-qt
       openrgb-with-all-plugins
@@ -33,15 +32,19 @@
       gifski
       jq
       gparted
-      deskflow
       vscode
+      ventoy-full
+      unityhub
+
+      # MultiPC/virtualMachine
+      scream
+      #deskflow
 
       # Games
       protontricks
       gamemode
       prismlauncher
       lutris
-      xboxdrv
       xivlauncher
 
       # needed for ALVR (installed in distrobox)
@@ -53,6 +56,7 @@
       # Emulation
       retroarchFull
       #yuzu-early-access  # NSwitch
+      suyu
       #citra-nightly      # N3DS
       pcsx2              # PS2
       cemu               # WiiU
@@ -79,12 +83,22 @@
       xclip wl-clipboard clipman
       pciutils
       wine
+      nitch
+
+      jdk21
 
       #swww
       mpvpaper
       wlogout
       wofi
     ];
+  };
+
+  services = {
+    kdeconnect = {
+      enable = true;
+      package = pkgs.kdePackages.kdeconnect-kde;
+    };
   };
 
   # Bluetooth headset buttons
