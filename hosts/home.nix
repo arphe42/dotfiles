@@ -37,7 +37,7 @@
 
     git = {
       enable = true;
-      userName = "raphael";
+      userName = "arphe42";
       userEmail = "arphe42@gmail.com";
     };
 

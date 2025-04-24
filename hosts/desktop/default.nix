@@ -1,11 +1,10 @@
-{ config, pkgs, lib, user, hyprland, aagl, ... }:
+{ config, pkgs, lib, user, ... }:
 
 {
   imports =
     [(./hardware-configuration.nix)] ++
     [(../../modules/displayManager/startx.nix)] ++
     [(../../modules/desktop/plasma6)] ++
-    #[(../../modules/desktop/hyprland)] ++
     [(../../modules/programs/steam.nix)] ++
     [(../../modules/hardware/bluetooth.nix)];
 
@@ -162,12 +161,6 @@
   # Open ports in the firewall.
   networking.firewall = {
     allowedTCPPorts = [
-      # Sunshine
-      47984
-      47989
-      47990
-      48010
-
       #deskflow
       24800
 
@@ -194,13 +187,6 @@
         from = 1714;
         to = 1764;
       }
-      { # Sunshine
-        from = 47998;
-        to = 48000;
-      }
     ];
   };
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 }

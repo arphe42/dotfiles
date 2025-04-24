@@ -13,75 +13,18 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  # System disk
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/334450ee-3716-4ee1-a108-83775b6a2153";
+    { device = "/dev/disk/by-uuid/407409d3-66a3-4e0f-8b65-f110d0f84013";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/A675-BB83";
+    { device = "/dev/disk/by-uuid/F3B8-BC9D";
       fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" ];
     };
 
-  swapDevices =
-    [ { device = "/dev/disk/by-uuid/da70ac3b-9578-46a4-ac6c-7ef705db00e9"; }
-    ];
-
-  # Truenas
-  # fileSystems."/home/raphael/Storage/Truenas" =
-  #   { device = "truenas.local:/mnt/SplishSplash/raphael";
-  #     fsType = "nfs";
-  #     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
-  #   };
-
-  fileSystems."/home/raphael/Storage/Truenas" = 
-    { device = "//truenas.local/raphael";
-      fsType = "cifs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-
-      in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
-    };
-
-
-  # fileSystems."/home/raphael/Storage/Emulation" =
-  #   { device = "truenas:/mnt/SplishSplash/Emulation";
-  #     fsType = "nfs";
-  #     options = [ "x-systemd.automount" "noauto" "x-systemd.idle-timeout=600" ];
-  #   };
-
-  fileSystems."/home/raphael/Storage/Emulation" =
-    { device = "//truenas.local/Emulation";
-      fsType = "cifs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-
-      in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
-    };
-
-  fileSystems."/home/raphael/Storage/Media" = 
-    { device = "//truenas.local/Media";
-      fsType = "cifs";
-      options = let
-        # this line prevents hanging on network split
-        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-
-      in ["${automount_opts},credentials=/home/raphael/.config/samba/smb-secrets,uid=1000,gid=1000"];
-    };
-
-  # Game 2Tb ssd nvme
-  fileSystems."/home/raphael/Storage/Game" =
-    { device = "/dev/disk/by-uuid/573a472b-7ce7-4567-b4a6-66ab64d645c3";
-      fsType = "ext4";
-    };
-  # Game 1Tb ssd nvme
-  #fileSystems."/home/raphael/Storage/Game" =
-  #  { device = "/dev/disk/by-uuid/2ff7f83c-0127-442d-88f5-13fa65911e8f";
-  #    fsType = "ext4";
-  #  };
+  swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -89,6 +32,8 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp42s0f0.useDHCP = lib.mkDefault true;
+  # networking.interfaces.enp42s0f1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp36s0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";

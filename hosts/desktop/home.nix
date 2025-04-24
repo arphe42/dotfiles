@@ -4,7 +4,6 @@
   imports = [
     ../../modules/programs/alacritty.nix
     ../../modules/programs/spicetify.nix
-    #../../modules/desktop/hyprland/home.nix
   ];
 
   home = {
@@ -13,7 +12,7 @@
       firefox
       brave
       chromium
-      gimp
+      #gimp
       krita
       onlyoffice-bin
       mpv
@@ -24,28 +23,28 @@
       qbittorrent
       obs-studio
       qpwgraph # pipewire config gui
-      remmina
-      moonlight-qt
+      #remmina
+      #moonlight-qt
       openrgb-with-all-plugins
       piper
-      sunshine
+      #sunshine
       gifski
       jq
       gparted
       vscode
-      ventoy-full
-      unityhub
+      #ventoy-full
+      #unityhub
 
       # MultiPC/virtualMachine
-      scream
+      #scream
       #deskflow
 
       # Games
       protontricks
       gamemode
       prismlauncher
-      lutris
-      xivlauncher
+      #lutris
+      #xivlauncher
 
       # needed for ALVR (installed in distrobox)
       distrobox
@@ -54,13 +53,13 @@
       sidequest
 
       # Emulation
-      retroarchFull
+      #retroarchFull
       #yuzu-early-access  # NSwitch
-      suyu
+      #suyu
       #citra-nightly      # N3DS
-      pcsx2              # PS2
-      cemu               # WiiU
-      dolphin-emu        # Wii
+      #pcsx2              # PS2
+      #cemu               # WiiU
+      #dolphin-emu        # Wii
 
       # System
       glibc
@@ -85,20 +84,21 @@
       wine
       nitch
 
+      # OpenJDK
       jdk21
-
-      #swww
-      mpvpaper
-      wlogout
-      wofi
     ];
   };
 
   services = {
     kdeconnect = {
       enable = true;
-      package = pkgs.kdePackages.kdeconnect-kde;
+      #package = pkgs.kdePackages.kdeconnect-kde;
     };
+  };
+
+  networking.firewall = rec {
+    allowedTCPPortRanges = [ { from = 1714; to = 1764; } ];
+    allowedUDPPortRanges = allowedTCPPortRanges;
   };
 
   # Bluetooth headset buttons
